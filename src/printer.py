@@ -12,12 +12,17 @@ class M08FPrinter:
     VENDOR_ID = "0483"  # STMicroelectronics
     PRODUCT_ID = "5740"  # M08F Printer
     
-    # Printer settings
-    MAX_WIDTH = 384  # Standard thermal printer width (48mm = 384 dots)
-    BYTES_PER_LINE = 48  # 384 bits = 48 bytes per line
-    LINE_HEIGHT = 40  # Increased line height
-    FONT_SIZE = 48   # Larger initial font size
-
+    # Printer physical specs
+    DPI = 203  # Printer resolution is 203 dpi
+    WIDTH_MM = 190  # Physical width is 210mm
+    
+    # Printer settings in dots
+    MAX_WIDTH = int(WIDTH_MM * DPI / 25.4)  # 1678 dots (210mm at 203dpi)
+    BYTES_PER_LINE = (MAX_WIDTH + 7) // 8  # 210 bytes (1678 dots rounded up to nearest byte)
+    FONT_SIZE = 36   # Font size for good readability
+    MARGIN = 10      # Small margin to maximize usable width
+    LINE_HEIGHT = 40  # Line height in dots
+    
     def __init__(self, config: Dict):
         # Find printer port
         port = self.find_printer_port()
@@ -27,7 +32,7 @@ class M08FPrinter:
         print(f"Connecting to printer on {port}...")
         
         # Open port directly
-        port_path = r'\\.\{}'.format(port)  # Proper raw string for Windows path
+        port_path = r'\\.\{}'.format(port)
         print(f"Opening port: {port_path}")
         self.handle = win32file.CreateFile(
             port_path,
@@ -47,8 +52,8 @@ class M08FPrinter:
         dcb.StopBits = 0  # ONESTOPBIT
         win32file.SetCommState(self.handle, dcb)
         
-        # Set timeouts (all timeouts in milliseconds)
-        timeouts = (500, 500, 500, 500, 1000)  # Add reasonable timeouts
+        # Set timeouts
+        timeouts = (500, 500, 500, 500, 1000)
         win32file.SetCommTimeouts(self.handle, timeouts)
         
         self.config = config
@@ -78,15 +83,12 @@ class M08FPrinter:
         self._write(b'\x1B\x37\x07')  # ESC 7 n - Set print density
         
         # Set line spacing
-        self._write(b'\x1B\x33\x24')  # ESC 3 n - Set line spacing
+        self._write(b'\x1B\x33\x40')  # ESC 3 n - Set line spacing to 64 dots
         
         # Set print speed based on config (1=slow, 5=fast)
-        speed = self.config.get('printer', {}).get('print_speed', 3)
+        speed = self.config.get('printer', {}).get('print_speed', 2)  # Slower default speed
         speed = max(1, min(5, speed))  # Ensure speed is between 1 and 5
         self._write(b'\x1B\x73' + bytes([speed]))  # ESC s n - Set speed
-        
-        # Set text justification to left (use full width)
-        self._write(b'\x1B\x61\x00')  # ESC a 0 - Left justification
         
         time.sleep(0.1)
 
@@ -94,10 +96,11 @@ class M08FPrinter:
         """Write raw bytes to printer."""
         print(f"Writing {len(data)} bytes")
         win32file.WriteFile(self.handle, data)
-        time.sleep(0.02)  # Even shorter delay for faster printing
+        time.sleep(0.02)  # Short delay for stability
         
-    def _wrap_text(self, text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list:
-        """Wrap text to fit within max_width."""
+    def _wrap_text(self, text: str, font: ImageFont.FreeTypeFont) -> list:
+        """Wrap text to fit printer width."""
+        max_width = self.MAX_WIDTH - (2 * self.MARGIN)
         words = text.split()
         lines = []
         current_line = []
@@ -117,8 +120,9 @@ class M08FPrinter:
                     current_line = [word]
                 else:
                     # If the word itself is too long, force wrap it
-                    lines.append(word)
-                    current_line = []
+                    wrapped = textwrap.wrap(word, width=20)  # Force wrap long words
+                    lines.extend(wrapped[:-1])
+                    current_line = [wrapped[-1]] if wrapped else []
         
         # Add the last line if it exists
         if current_line:
@@ -126,10 +130,10 @@ class M08FPrinter:
             
         return lines
         
-    def _text_to_image(self, text: str) -> Image.Image:
+    def _text_to_image(self, text: str, align: int = 0) -> Image.Image:
         """Convert text to a monochrome image."""
         try:
-            # Try to use Arial font with larger size
+            # Try to use Arial font
             font = ImageFont.truetype("arial.ttf", self.FONT_SIZE)
         except:
             # Fallback to default font
@@ -140,45 +144,49 @@ class M08FPrinter:
         
         # Process each paragraph and collect all lines
         all_lines = []
+        line_heights = []  # Store height for each line
         
         for paragraph in paragraphs:
             if paragraph.strip():
-                # Get the maximum possible font size that fits the width
-                test_size = self.FONT_SIZE
-                while test_size > 12:  # Don't go smaller than 12pt
-                    try:
-                        test_font = ImageFont.truetype("arial.ttf", test_size)
-                    except:
-                        break
-                        
-                    # Test with the full width
-                    bbox = test_font.getbbox(paragraph)
-                    if bbox[2] - bbox[0] <= self.MAX_WIDTH:
-                        font = test_font
-                        break
-                    test_size -= 4
-                
                 # Wrap text to fit width
-                wrapped_lines = self._wrap_text(paragraph, font, self.MAX_WIDTH)
+                wrapped_lines = self._wrap_text(paragraph, font)
                 all_lines.extend(wrapped_lines)
+                # Calculate line height based on actual text height
+                for line in wrapped_lines:
+                    bbox = font.getbbox(line)
+                    height = bbox[3] - bbox[1]
+                    line_heights.append(height + 10)  # Add 10 dots padding
             else:
                 all_lines.append('')  # Keep empty lines for spacing
+                line_heights.append(20)  # Height for empty lines
                 
         # Calculate total height needed
-        height = len(all_lines) * self.LINE_HEIGHT
+        total_height = sum(line_heights)
         
         # Create new image with white background
-        img = Image.new('1', (self.MAX_WIDTH, height), 1)  # 1 = white
+        img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
         draw = ImageDraw.Draw(img)
         
         # Draw each line
         y = 0
-        for line in all_lines:
+        for line, height in zip(all_lines, line_heights):
             if line.strip():
-                # Left align text (no centering)
-                draw.text((0, y), line, font=font, fill=0)  # 0 = black
-            y += self.LINE_HEIGHT
-            
+                # Get the line's width
+                bbox = font.getbbox(line)
+                text_width = bbox[2] - bbox[0]
+                
+                # Calculate x position based on alignment
+                if align == 1:  # Center
+                    x = (self.MAX_WIDTH - text_width) // 2
+                elif align == 2:  # Right
+                    x = self.MAX_WIDTH - text_width - self.MARGIN
+                else:  # Left
+                    x = self.MARGIN
+                
+                # Draw the text
+                draw.text((x, y), line, font=font, fill=0)  # 0 = black
+            y += height
+                
         return img
         
     def _print_image(self, img: Image.Image) -> None:
@@ -191,10 +199,10 @@ class M08FPrinter:
             # Calculate lines for this block
             lines_in_block = min(255, img.height - start_y)
             
-            # Send block marker exactly as specified in protocol
+            # Send block marker
             self._write(b'\x1D\x76\x30\x00')  # GS v 0 : print raster bit image
-            self._write(bytes([self.BYTES_PER_LINE, 0]))  # 48 bytes per line (384 dots)
-            self._write(bytes([lines_in_block, 0]))  # Number of lines in this block
+            self._write(bytes([self.BYTES_PER_LINE, 0]))  # bytes per line
+            self._write(bytes([lines_in_block, 0]))  # lines in this block
             
             # Send image data
             for y in range(start_y, start_y + lines_in_block):
@@ -208,19 +216,21 @@ class M08FPrinter:
                     line_data.append(byte)
                 self._write(bytes(line_data))
             
-            time.sleep(0.02)  # Shorter delay between blocks
+            time.sleep(0.02)  # Short delay between blocks
         
         # Feed paper
-        feed_lines = self.config.get('printer', {}).get('feed_lines', 5)
+        feed_lines = self.config.get('printer', {}).get('feed_lines', 3)
         self._write(bytes([0x1B, 0x64, feed_lines]))  # Feed n lines
         
     def print_text(self, text: Dict) -> bool:
         """Print text to the printer."""
         try:
-            # Format the text
+            # Format the text with extra spacing
             output = f"""@{text['username']}
 
+
 {text['title']}
+
 
 """
             if text['content']:
@@ -230,7 +240,7 @@ class M08FPrinter:
                 output += f"{' '.join(text['hashtags'])}\n"
             
             # Convert text to image and print
-            img = self._text_to_image(output)
+            img = self._text_to_image(output, align=0)  # Left align
             self._print_image(img)
             
             return True
@@ -241,45 +251,15 @@ class M08FPrinter:
     def print_startup_message(self) -> bool:
         """Print the startup message."""
         try:
-            message = """FASCISM SEES ITS SALVATION
-IN GIVING THESE MASSES
-NOT THEIR RIGHT, BUT INSTEAD
-A CHANCE TO EXPRESS
-THEMSELVES"""
+            message = """Fascism sees its salvation in giving these masses not their right, but instead a chance to express themselves."""
             
-            # Convert to image and print
-            img = self._text_to_image(message)
+            # Print centered with larger font
+            img = self._text_to_image(message, align=1)  # Center align
             self._print_image(img)
             
             return True
         except Exception as e:
             print(f"Printer error during startup message: {str(e)}")
-            return False
-            
-    def test_print(self) -> bool:
-        """Print a test page to verify printer is working."""
-        try:
-            print("Sending test print...")
-            
-            test_message = """=== TEST PRINT ===
-
-Testing basic text output...
-
-1. Normal text
-2. Multiple
-3. Lines
-4. Of
-5. Text
-
-Test complete!"""
-            
-            # Convert to image and print
-            img = self._text_to_image(test_message)
-            self._print_image(img)
-            
-            return True
-        except Exception as e:
-            print(f"Printer error during test: {str(e)}")
             return False
             
     def close(self):
