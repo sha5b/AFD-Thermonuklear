@@ -2,9 +2,10 @@ twitter:
   accounts:
     - username: "RealAlexJones"
     - username: "elonmusk"
-  fetch_count: 10
+  fetch_count: 5  # Reduced to minimize rate limiting
   
 printer:
   baudrate: 9600
-  buffer_size: 50
-  print_speed: 1.0  # Tweets per minute
+  buffer_size: 20  # Reduced buffer size
+  print_speed: 5  # Print speed (1=slow, 5=fast)
+  feed_lines: 5  # Number of lines to feed after printing
