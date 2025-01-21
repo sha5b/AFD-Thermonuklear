@@ -19,7 +19,13 @@ class M08FPrinter:
     # Printer settings in dots
     MAX_WIDTH = int(WIDTH_MM * DPI / 25.4)  # 1678 dots (210mm at 203dpi)
     BYTES_PER_LINE = (MAX_WIDTH + 7) // 8  # 210 bytes (1678 dots rounded up to nearest byte)
-    FONT_SIZE = 36   # Font size for good readability
+    
+    # Font sizes for different elements
+    USERNAME_SIZE = 32   # Smaller size for username
+    TITLE_SIZE = 48     # Larger size for title
+    CONTENT_SIZE = 42   # Medium size for content
+    HASHTAG_SIZE = 36   # Slightly smaller for hashtags
+    
     MARGIN = 10      # Small margin to maximize usable width
     LINE_HEIGHT = 40  # Line height in dots
     
@@ -79,8 +85,8 @@ class M08FPrinter:
         self._write(b'\x1B\x40')  # ESC @ - Initialize printer
         time.sleep(0.1)
         
-        # Set print density to highest
-        self._write(b'\x1B\x37\x07')  # ESC 7 n - Set print density
+        # Set print density to highest for better emoji detail
+        self._write(b'\x1B\x37\x07')  # ESC 7 n - Set print density (7 = highest)
         
         # Set line spacing
         self._write(b'\x1B\x33\x40')  # ESC 3 n - Set line spacing to 64 dots
@@ -94,7 +100,6 @@ class M08FPrinter:
 
     def _write(self, data: bytes) -> None:
         """Write raw bytes to printer."""
-        print(f"Writing {len(data)} bytes")
         win32file.WriteFile(self.handle, data)
         time.sleep(0.02)  # Short delay for stability
         
@@ -130,14 +135,27 @@ class M08FPrinter:
             
         return lines
         
-    def _text_to_image(self, text: str, align: int = 0) -> Image.Image:
-        """Convert text to a monochrome image."""
+    def _get_font(self, size: int) -> ImageFont.FreeTypeFont:
+        """Get font with specified size."""
         try:
-            # Try to use Arial font
-            font = ImageFont.truetype("arial.ttf", self.FONT_SIZE)
+            # Try to use Segoe UI Emoji font for emoji support
+            try:
+                return ImageFont.truetype("seguiemj.ttf", size)  # Windows Emoji font
+            except:
+                try:
+                    return ImageFont.truetype("segoe ui emoji", size)  # Alternative path
+                except:
+                    try:
+                        return ImageFont.truetype("arial.ttf", size)  # Fallback to Arial
+                    except:
+                        return ImageFont.load_default()
         except:
-            # Fallback to default font
-            font = ImageFont.load_default()
+            return ImageFont.load_default()
+
+    def _simple_text_to_image(self, text: str, align: int = 0, size: int = None) -> Image.Image:
+        """Convert simple text to a monochrome image."""
+        # Use title size if no size specified
+        font = self._get_font(size or self.TITLE_SIZE)
             
         # Split text into paragraphs
         paragraphs = text.split('\n')
@@ -189,6 +207,57 @@ class M08FPrinter:
                 
         return img
         
+    def _tweet_to_image(self, text: Dict) -> Image.Image:
+        """Convert tweet to a monochrome image with different font sizes."""
+        # Get fonts for different elements
+        username_font = self._get_font(self.USERNAME_SIZE)
+        title_font = self._get_font(self.TITLE_SIZE)
+        content_font = self._get_font(self.CONTENT_SIZE)
+        hashtag_font = self._get_font(self.HASHTAG_SIZE)
+        
+        # Create image with estimated height
+        total_height = 300  # Initial estimate
+        img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
+        draw = ImageDraw.Draw(img)
+        
+        # Draw username
+        username = f"@{text['username']}"
+        bbox = username_font.getbbox(username)
+        draw.text((self.MARGIN, 20), username, font=username_font, fill=0)
+        current_y = 80  # Space after username
+        
+        # Draw title
+        wrapped_title = self._wrap_text(text['title'], title_font)
+        for line in wrapped_title:
+            bbox = title_font.getbbox(line)
+            draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
+            current_y += bbox[3] - bbox[1] + 10
+        current_y += 40  # Extra space after title
+        
+        # Draw content if present
+        if text['content']:
+            wrapped_content = self._wrap_text(text['content'], content_font)
+            for line in wrapped_content:
+                bbox = content_font.getbbox(line)
+                draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
+                current_y += bbox[3] - bbox[1] + 10
+            current_y += 40  # Extra space after content
+        
+        # Draw hashtags if present
+        if text['hashtags']:
+            hashtag_text = ' '.join(text['hashtags'])
+            wrapped_hashtags = self._wrap_text(hashtag_text, hashtag_font)
+            for line in wrapped_hashtags:
+                bbox = hashtag_font.getbbox(line)
+                width = bbox[2] - bbox[0]
+                # Right align hashtags
+                x = self.MAX_WIDTH - width - self.MARGIN
+                draw.text((x, current_y), line, font=hashtag_font, fill=0)
+                current_y += bbox[3] - bbox[1] + 10
+        
+        # Crop image to actual height
+        return img.crop((0, 0, self.MAX_WIDTH, current_y + 20))
+        
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""
         # Convert to monochrome
@@ -225,22 +294,17 @@ class M08FPrinter:
     def print_text(self, text: Dict) -> bool:
         """Print text to the printer."""
         try:
-            # Format the text with extra spacing
-            output = f"""@{text['username']}
-
-
-{text['title']}
-
-
-"""
+            print("\n=== Printing Tweet ===")
+            print(f"From: @{text['username']}")
+            print(f"Title: {text['title']}")
             if text['content']:
-                output += f"{text['content']}\n\n"
-            
+                print(f"Content: {text['content']}")
             if text['hashtags']:
-                output += f"{' '.join(text['hashtags'])}\n"
+                print(f"Hashtags: {' '.join(text['hashtags'])}")
+            print("===================\n")
             
-            # Convert text to image and print
-            img = self._text_to_image(output, align=0)  # Left align
+            # Convert tweet to image and print
+            img = self._tweet_to_image(text)
             self._print_image(img)
             
             return True
@@ -254,7 +318,7 @@ class M08FPrinter:
             message = """Fascism sees its salvation in giving these masses not their right, but instead a chance to express themselves."""
             
             # Print centered with larger font
-            img = self._text_to_image(message, align=1)  # Center align
+            img = self._simple_text_to_image(message, align=1, size=48)  # Center align with large font
             self._print_image(img)
             
             return True
