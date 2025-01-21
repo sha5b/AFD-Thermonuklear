@@ -35,11 +35,15 @@ def main():
                 print(f"{Fore.BLUE}Fetching new tweets...{Fore.RESET}")
                 tweets = twitter_client.fetch_all_accounts()
                 tweet_buffer.add_tweets(tweets)
+                # Add delay before next fetch attempt if buffer is still empty
+                if tweet_buffer.is_empty():
+                    print(f"{Fore.YELLOW}No new tweets found. Waiting 5 minutes before next attempt...{Fore.RESET}")
+                    time.sleep(300)  # Wait 5 minutes
             
             # Get and print next tweet
             tweet = tweet_buffer.get_next_tweet()
             if tweet:
-                print(f"{Fore.WHITE}Printing tweet: {tweet[:50]}...{Fore.RESET}")
+                print(f"{Fore.WHITE}Printing tweet from @{tweet['username']}: {tweet['title'][:50]}...{Fore.RESET}")
                 printer.print_text(tweet)
             
             time.sleep(0.1)  # Small delay to prevent CPU overuse

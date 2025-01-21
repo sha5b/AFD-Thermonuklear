@@ -49,12 +49,26 @@ class M08FPrinter:
             print(f"Printer error: {str(e)}")
             return False
             
-    def _format_text(self, text: str) -> str:
-        """Format text for M08F printer."""
-        # Add printer-specific formatting
-        formatted = text.replace('\n', '\r\n')
-        formatted += '\r\n\r\n'  # Add extra newlines between tweets
-        return formatted
+    def _format_text(self, tweet: Dict) -> str:
+        """Format tweet for M08F printer."""
+        # Format tweet with username, title, content and hashtags
+        formatted = []
+        formatted.append(f"@{tweet['username']}")
+        formatted.append("-" * 32)  # Separator line
+        formatted.append(f"Title: {tweet['title']}")
+        
+        if tweet['content']:
+            formatted.append("\nContent:")
+            formatted.append(tweet['content'])
+        
+        if tweet['hashtags']:
+            formatted.append("\nTags: " + " ".join(tweet['hashtags']))
+            
+        formatted.append("-" * 32)  # Separator line
+        formatted.append("")  # Extra newline between tweets
+        
+        # Join with proper line endings for printer
+        return "\r\n".join(formatted)
         
     def close(self):
         """Close the serial connection."""
