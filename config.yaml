@@ -1,0 +1,10 @@
+twitter:
+  accounts:
+    - username: "RealAlexJones"
+    - username: "elonmusk"
+  fetch_count: 10
+  
+printer:
+  baudrate: 9600
+  buffer_size: 50
+  print_speed: 1.0  # Tweets per minute
