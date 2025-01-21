@@ -1,0 +1,68 @@
+# Python Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+.Python
+pyvenv.cfg
+
+# Python Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE - VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# IDE - PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# Operating System
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Python Testing
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+.coverage.*
+coverage.xml
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs
+*.log
+logs/
