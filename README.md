@@ -5,7 +5,7 @@ A thermal printer system for printing tweets with advanced formatting and emoji 
 ## Printer Information
 
 The Phomemo M08F is a high-quality thermal printer with the following specifications:
-- Print Width: 80mm (effective print width: 72mm/576 dots)
+- Print Width: 210mm (effective print width: 190mm)
 - Resolution: 203 DPI
 - Print Speed: Adjustable (1-5 levels)
 - Connection: USB
@@ -28,7 +28,10 @@ The Phomemo M08F is a high-quality thermal printer with the following specificat
 
 - Windows 11 (for printer drivers)
 - Python 3.x
-- M08F Thermal Printer
+- Phomemo M08F Thermal Printer (80mm)
+  - Make sure to install the official Phomemo drivers
+  - USB connection required
+  - Available from Phomemo's official store or authorized resellers
 - Required Python packages (install via `pip install -r requirements.txt`):
   - PySerial
   - PyWin32
