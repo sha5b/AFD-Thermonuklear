@@ -1,6 +1,16 @@
 # AFD-Thermonuklear
 
-A thermal printer system for printing tweets with advanced formatting and emoji support. This project uses the M08F thermal printer to create nicely formatted printouts of tweets with different font sizes and layouts.
+A thermal printer system for printing tweets with advanced formatting and emoji support. This project uses the Phomemo M08F thermal printer (a portable 80mm thermal printer) to create nicely formatted printouts of tweets with different font sizes and layouts.
+
+## Printer Information
+
+The Phomemo M08F is a high-quality thermal printer with the following specifications:
+- Print Width: 80mm (effective print width: 72mm/576 dots)
+- Resolution: 203 DPI
+- Print Speed: Adjustable (1-5 levels)
+- Connection: USB
+- VID/PID: 0483/5740 (STMicroelectronics)
+- Compatible OS: Windows/Mac/Linux
 
 ## Features
 
