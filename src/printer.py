@@ -226,6 +226,9 @@ class M08FPrinter:
         img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
         draw = ImageDraw.Draw(img)
         
+        # Initialize starting position
+        current_y = 20
+        
         # Draw title (German content)
         wrapped_title = self._wrap_text(text['title'], title_font)
         for line in wrapped_title:
