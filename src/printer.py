@@ -21,19 +21,17 @@ class M08FPrinter:
     BYTES_PER_LINE = (MAX_WIDTH + 7) // 8  # 210 bytes (1678 dots rounded up to nearest byte)
     
     # Font sizes for different elements
-    USERNAME_SIZE = 36   # Slightly larger for better visibility
-    TITLE_SIZE = 52     # Larger size for title
-    CONTENT_SIZE = 46   # Medium size for content
-    HASHTAG_SIZE = 40   # Slightly larger for hashtags
+    USERNAME_SIZE = 36   # Size for username
+    TITLE_SIZE = 48     # Size for German content
+    CONTENT_SIZE = 42   # Size for English content
+    HASHTAG_SIZE = 36   # Size for date
     
-    MARGIN = 5       # Minimal margin to maximize usable width
-    LINE_HEIGHT = 45  # Slightly increased line height for better readability
+    MARGIN = 15      # Generous margins for clean look
+    LINE_HEIGHT = 40  # Line height
     
-    # Additional styling constants
-    USERNAME_SPACING = 25  # Space after username
-    TITLE_SPACING = 35    # Space after title
-    CONTENT_SPACING = 35  # Space after content
-    HASHTAG_SPACING = 25  # Space after hashtags
+    # Spacing constants
+    SECTION_SPACING = 30  # Space between sections
+    LINE_SPACING = 15     # Space between lines
     
     def __init__(self, config: Dict):
         # Find printer port
@@ -179,7 +177,7 @@ class M08FPrinter:
                 for line in wrapped_lines:
                     bbox = font.getbbox(line)
                     height = bbox[3] - bbox[1]
-                    line_heights.append(height + 10)  # Add 10 dots padding
+                    line_heights.append(height + self.LINE_SPACING)
             else:
                 all_lines.append('')  # Keep empty lines for spacing
                 line_heights.append(self.LINE_HEIGHT)  # Height for empty lines
@@ -214,56 +212,48 @@ class M08FPrinter:
         return img
         
     def _tweet_to_image(self, text: Dict) -> Image.Image:
-        """Convert tweet to a monochrome image with different font sizes."""
+        """Convert tweet to a clean monochrome image with German and English content."""
         # Get fonts for different elements
         username_font = self._get_font(self.USERNAME_SIZE)
-        title_font = self._get_font(self.TITLE_SIZE)
-        content_font = self._get_font(self.CONTENT_SIZE)
-        hashtag_font = self._get_font(self.HASHTAG_SIZE)
+        german_font = self._get_font(self.TITLE_SIZE)
+        english_font = self._get_font(self.CONTENT_SIZE)
+        date_font = self._get_font(self.HASHTAG_SIZE)
         
         # Create image with estimated height
-        total_height = 400  # Increased initial estimate for better sizing
+        total_height = 500  # Increased for better spacing
         img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
         draw = ImageDraw.Draw(img)
         
-        # Draw username
-        username = f"@{text['username']}"
-        bbox = username_font.getbbox(username)
-        draw.text((self.MARGIN, 20), username, font=username_font, fill=0)
-        current_y = 20 + bbox[3] - bbox[1] + self.USERNAME_SPACING
+        # Starting position
+        current_y = 30
         
-        # Draw title
-        wrapped_title = self._wrap_text(text['title'], title_font)
-        for line in wrapped_title:
-            bbox = title_font.getbbox(line)
-            draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
-            current_y += bbox[3] - bbox[1] + 10
-        current_y += self.TITLE_SPACING
+        # Draw German content (title)
+        wrapped_german = self._wrap_text(text['title'], german_font)
+        for line in wrapped_german:
+            bbox = german_font.getbbox(line)
+            draw.text((self.MARGIN, current_y), line, font=german_font, fill=0)
+            current_y += bbox[3] - bbox[1] + self.LINE_SPACING
+        current_y += self.SECTION_SPACING
         
-        # Draw content if present
+        # Draw English content
         if text['content']:
-            wrapped_content = self._wrap_text(text['content'], content_font)
-            for line in wrapped_content:
-                bbox = content_font.getbbox(line)
-                draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
-                current_y += bbox[3] - bbox[1] + 10
-            current_y += self.CONTENT_SPACING
+            wrapped_english = self._wrap_text(text['content'], english_font)
+            for line in wrapped_english:
+                bbox = english_font.getbbox(line)
+                draw.text((self.MARGIN, current_y), line, font=english_font, fill=0)
+                current_y += bbox[3] - bbox[1] + self.LINE_SPACING
+            current_y += self.SECTION_SPACING
         
-        # Draw hashtags if present
-        if text['hashtags']:
-            hashtag_text = ' '.join(text['hashtags'])
-            wrapped_hashtags = self._wrap_text(hashtag_text, hashtag_font)
-            for line in wrapped_hashtags:
-                bbox = hashtag_font.getbbox(line)
-                width = bbox[2] - bbox[0]
-                # Right align hashtags
-                x = self.MAX_WIDTH - width - self.MARGIN
-                draw.text((x, current_y), line, font=hashtag_font, fill=0)
-                current_y += bbox[3] - bbox[1] + 10
-            current_y += self.HASHTAG_SPACING
+        # Draw date centered at the bottom
+        date_text = text['date']
+        bbox = date_font.getbbox(date_text)
+        width = bbox[2] - bbox[0]
+        x = (self.MAX_WIDTH - width) // 2  # Center the date
+        draw.text((x, current_y), date_text, font=date_font, fill=0)
+        current_y += bbox[3] - bbox[1] + self.LINE_SPACING
         
         # Crop image to actual height
-        return img.crop((0, 0, self.MAX_WIDTH, current_y + 15))
+        return img.crop((0, 0, self.MAX_WIDTH, current_y + 20))
         
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""
