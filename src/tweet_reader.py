@@ -21,16 +21,25 @@ class TweetReader:
             # Convert printed string to boolean
             self._last_read_rows[i]['printed'] = self._last_read_rows[i]['printed'].lower() == 'true'
             
-            if i + 1 < len(self._last_read_rows) and self._last_read_rows[i]['username'] == self._last_read_rows[i+1]['username'] and self._last_read_rows[i]['date'] == self._last_read_rows[i+1]['date']:
-                # Found a pair - German and English versions
-                self._last_read_rows[i]['english_content'] = self._last_read_rows[i+1]['content']
-                tweets.append(self._last_read_rows[i])
-                i += 2  # Skip the next row as it's the English version
-            else:
-                # No pair found, just add the current row
-                self._last_read_rows[i]['english_content'] = ''
-                tweets.append(self._last_read_rows[i])
-                i += 1
+            # Check if next row exists and can be paired
+            if i + 1 < len(self._last_read_rows):
+                # Normalize usernames and dates for comparison
+                username1 = self._last_read_rows[i]['username'].strip()
+                username2 = self._last_read_rows[i+1]['username'].strip()
+                date1 = self._last_read_rows[i]['date'].strip()
+                date2 = self._last_read_rows[i+1]['date'].strip()
+                
+                if username1 == username2 and date1 == date2:
+                    # Found a pair - German and English versions
+                    self._last_read_rows[i]['english_content'] = self._last_read_rows[i+1]['content']
+                    tweets.append(self._last_read_rows[i])
+                    i += 2  # Skip the next row as it's the English version
+                    continue
+            
+            # No pair found, just add the current row
+            self._last_read_rows[i]['english_content'] = ''
+            tweets.append(self._last_read_rows[i])
+            i += 1
                 
         return tweets
         
