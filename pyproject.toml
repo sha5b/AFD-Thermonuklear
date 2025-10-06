@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "afd-thermonuklear"
+version = "0.1.0"
+description = "Reads tweets from a list and prints them at intervals to a serial thermal printer."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+  { name = "AFD-Thermonuklear Maintainers" }
+]
+dependencies = [
+  "python-dotenv==1.0.0",
+  "PyYAML==6.0.1",
+  "pyserial==3.5",
+  "keyboard==0.13.5",
+  "colorama==0.4.6",
+]
+
+[project.urls]
+homepage = "https://github.com/sha5b/AFD-Thermonuklear"
+
+[project.scripts]
+afd-thermonuklear = "main:main"
+
+[tool.setuptools]
+py-modules = ["buffer", "main", "printer", "tweet_reader", "twitter"]
+
+[tool.setuptools.package-dir]
+"" = "src"
