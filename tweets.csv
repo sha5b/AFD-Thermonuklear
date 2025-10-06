@@ -6,7 +6,7 @@ Dieter Görnert,‘Shoot the pack or beat them back to Africa.’,19.05.2016,FAL
 Holger Arppe,"""Brennende Flüchtlingsheime sind kein Akt der Aggression.""",August 2017,FALSE
 Holger Arppe,‘Burning refugee centres is not an act of aggression.’,August 2017,FALSE
 Sandro Hersel,"„Auf der Stelle erschießen, dann wird sich das ganz schnell legen.“",10.10.2016,FALSE
-Sandro Hersel,"‘Shoot them on the spot, then it'll go away very quickly.’",Oktober 2016,FALSE
+Sandro Hersel,"‘Shoot them on the spot, then it'll go away very quickly.’",Oktober 2016,False
 Alice Weidel,„Der Verfassungsschutz ist selbst zum Verfassungsfeind geworden und er gehört in dieser Form abgeschafft.“ ,29.06.2024,FALSE
 Alice Weidel,‘The Office for the Protection of the Constitution has itself become an enemy of the constitution and should be abolished in this form.’ ,29.06.2024,FALSE
 Alice Weidel,„Die politische Korrektheit gehört auf den Müllhaufen der Geschichte.“,22.04.2017,FALSE
@@ -49,8 +49,8 @@ Nicolaus Fest,„Die EU MUSS WEG.. genau wie die BRD Betreibergesellschaft.“ ,
 Nicolaus Fest,‘The EU MUST GO... just like the FRG (Federal Republic of Germany) operating company.’ ,20.05.2020,FALSE
 Gottfried Curio,"„Das geplante Dublin IV wäre allerdings das endgültige Aus für jede Integration. Es ist ein Aufbauprogramm für Clanbildung hierzulande, statt den Asylanten in sein Dorf zurück zu schicken, kommt dann das ganze Dorf nach Deutschland.""",02.10.2018,FALSE
 Gottfried Curio,"‘However, the planned Dublin IV would be the final end for all integration. It is a programme for clan formation in this country; instead of sending the asylum seeker back to their village, the whole village will come to live in Germany.’",02.10.2018,FALSE
-Julian Flak,"""Liebe Freunde, es ist völlig egal, ob man das ganz jetzt Abschiebeoffensive, Negativeinwanderung oder schlecht Re-migration. [...] Wichtig ist nur, wer in Deutschland nichts zu suchen hat, der soll Deutschland verlassen.""",04.08.2023,FALSE
-Julian Flak,"‘Dear friends, it doesn't matter whether you call it a deportation offensive, negative immigration or bad re-migration. [...] The only important thing is that anyone who has no business in Germany should leave Germany.’",04.08.2023,FALSE
+Julian Flak,"""Liebe Freunde, es ist völlig egal, ob man das ganz jetzt Abschiebeoffensive, Negativeinwanderung oder schlecht Re-migration. [...] Wichtig ist nur, wer in Deutschland nichts zu suchen hat, der soll Deutschland verlassen.""",04.08.2023,TRUE
+Julian Flak,"‘Dear friends, it doesn't matter whether you call it a deportation offensive, negative immigration or bad re-migration. [...] The only important thing is that anyone who has no business in Germany should leave Germany.’",04.08.2023,TRUE
 Lars Steinke,"„Gerade in Böhmen und durch Prag gefahren! [...] Eine tolle, deutsche Stadt.“ ",10.06.2016,FALSE
 Lars Steinke,‘Just been to Bohemia and travelled through Prague! [...] A great German city.’ ,10.06.2016,FALSE
 Sibylle Schmidt, „Wir werden euch kriegen ihr Säcke.“ ,23.04.2019,FALSE
@@ -150,7 +150,7 @@ Björn Höcke,“Climate activitst that glue themselves to the street may be tor
 Alice Weidel,"„Diese Schweine sind nichts anderes als Marionetten der Siegermächte des 2ten Weltkriegs und haben die Aufgabe, das deutsche Volk kleinzuhalten, indem molekulare Bürgerkriege in den Ballungszentren durch Überfremdung induziert werden sollen.“",2013,FALSE
 Alice Weidel,“These pigs are nothing more than puppets of the victorious powers of the Second World War and have the task of keeping the German people down by inducing molecular civil wars in the urban centers through alienation.” ,2013,FALSE
 Björn Höcke ,"„Wir Deutschen […] sind das einzige Volk der Welt, das sich ein Denkmal der Schande in das Herz seiner Hauptstadt gepflanzt hat.“",17.01.2017,FALSE
- Björn Höcke ,"""We Germans [...] are the only people in the world who have planted a monument of shame in the heart of their capital.” ",17.01.2017,FALSE
+ Björn Höcke ,"""We Germans [...] are the only people in the world who have planted a monument of shame in the heart of their capital.” ",17.01.2017,False
 Daniel Halemba,"""Die Deutsche Staatsräson muss die Sicherheit Deutschlands und Europas, nicht Israels sein. Der Schuldkult muss beendet werden!” ",02.11.2023,FALSE
 Daniel Halemba,"‘The German raison d'état must be the security of Germany and Europe, not Israel. The cult of guilt must end!’ ",02.11.2023,FALSE
 Christina Baum,"„Migranten immer aggressiver und teils bewaffnet. Es ist zutiefst erschütternd zu lesen, mit welchem Haß, der sich in Gewalt Bahn bricht, sich diese Menschen auf den Weg zu uns machen.""",09.10.2023,FALSE

@@ -18,11 +18,14 @@ class TweetReader:
         # Pair German and English tweets by assuming consecutive rows from same user are pairs
         i = 0
         while i < len(self._last_read_rows):
-            # Convert printed string to boolean
+            # Convert printed string to boolean for current row
             self._last_read_rows[i]['printed'] = self._last_read_rows[i]['printed'].lower() == 'true'
             
             # Check if next row exists and can be paired
             if i + 1 < len(self._last_read_rows):
+                # Convert printed string to boolean for next row
+                self._last_read_rows[i+1]['printed'] = self._last_read_rows[i+1]['printed'].lower() == 'true'
+                
                 # Normalize usernames for comparison (accounting for extra spaces)
                 username1 = self._last_read_rows[i]['username'].strip()
                 username2 = self._last_read_rows[i+1]['username'].strip()
@@ -97,7 +100,13 @@ class TweetReader:
         with open(self.csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(self._last_read_rows)
+            # Write the original rows without any extra fields we added
+            original_rows = []
+            for row in self._last_read_rows:
+                # Create a clean row with only the original fieldnames
+                clean_row = {field: row.get(field, '') for field in fieldnames}
+                original_rows.append(clean_row)
+            writer.writerows(original_rows)
             
     def get_random_unprinted_tweet(self) -> Optional[Dict]:
         """Get a random unprinted tweet and mark it as printed."""
