@@ -15,7 +15,7 @@ class TweetReader:
             reader = csv.DictReader(f)
             self._last_read_rows = list(reader)
             
-        # Pair German and English tweets
+        # Pair German and English tweets by assuming consecutive rows from same user are pairs
         i = 0
         while i < len(self._last_read_rows):
             # Convert printed string to boolean
@@ -23,13 +23,12 @@ class TweetReader:
             
             # Check if next row exists and can be paired
             if i + 1 < len(self._last_read_rows):
-                # Normalize usernames and dates for comparison
+                # Normalize usernames for comparison (accounting for extra spaces)
                 username1 = self._last_read_rows[i]['username'].strip()
                 username2 = self._last_read_rows[i+1]['username'].strip()
-                date1 = self._last_read_rows[i]['date'].strip()
-                date2 = self._last_read_rows[i+1]['date'].strip()
                 
-                if username1 == username2 and date1 == date2:
+                # If usernames match, assume they're a pair
+                if username1 == username2:
                     # Found a pair - German and English versions
                     self._last_read_rows[i]['english_content'] = self._last_read_rows[i+1]['content']
                     tweets.append(self._last_read_rows[i])
@@ -42,6 +41,40 @@ class TweetReader:
             i += 1
                 
         return tweets
+    
+    def _dates_match(self, date1: str, date2: str) -> bool:
+        """Check if two dates match, accounting for various formats."""
+        # Direct match
+        if date1 == date2:
+            return True
+            
+        # Remove periods and compare
+        if date1.replace('.', '') == date2.replace('.', ''):
+            return True
+            
+        # Case insensitive match
+        if date1.lower() == date2.lower():
+            return True
+            
+        # Remove spaces and compare
+        if date1.replace(' ', '') == date2.replace(' ', ''):
+            return True
+            
+        # Handle specific known mismatches
+        # "10.10.2016" vs "Oktober 2016"
+        if ("10.10.2016" in date1 and "oktober 2016" in date2.lower()) or \
+           ("10.10.2016" in date2 and "oktober 2016" in date1.lower()):
+            return True
+        
+        # Handle "August 2017" vs "08.2017" or similar
+        if self._month_year_match(date1, date2):
+            return True
+            
+        # "01.08.13" vs "01.08.2013" (handle 2-digit vs 4-digit years)
+        if self._normalize_year_dates(date1, date2):
+            return True
+            
+        return False
         
     def _write_tweets(self, tweets: list) -> None:
         """Write tweets back to CSV file."""
