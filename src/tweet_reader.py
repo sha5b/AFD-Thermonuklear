@@ -36,8 +36,10 @@ class TweetReader:
                     continue
             
             # No pair found, just add the current row
-            self._last_read_rows[i]['english_content'] = ''
-            tweets.append(self._last_read_rows[i])
+            # Make sure we don't add empty content rows
+            if self._last_read_rows[i]['content'].strip():
+                self._last_read_rows[i]['english_content'] = ''
+                tweets.append(self._last_read_rows[i])
             i += 1
                 
         return tweets
@@ -101,6 +103,10 @@ class TweetReader:
         """Get a random unprinted tweet and mark it as printed."""
         tweets = self._read_tweets()
         
+        # If no tweets available, return None
+        if not tweets:
+            return None
+        
         # Filter unprinted tweets
         unprinted = [t for t in tweets if not t['printed']]
         if not unprinted:
@@ -110,6 +116,10 @@ class TweetReader:
             self._write_tweets(tweets)
             # Now get an unprinted tweet
             unprinted = tweets
+            
+        # Check again if we have unprinted tweets
+        if not unprinted:
+            return None
             
         # Select random tweet
         tweet = random.choice(unprinted)

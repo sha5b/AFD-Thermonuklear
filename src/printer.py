@@ -21,13 +21,19 @@ class M08FPrinter:
     BYTES_PER_LINE = (MAX_WIDTH + 7) // 8  # 210 bytes (1678 dots rounded up to nearest byte)
     
     # Font sizes for different elements
-    USERNAME_SIZE = 32   # Smaller size for username
-    TITLE_SIZE = 48     # Larger size for title
-    CONTENT_SIZE = 42   # Medium size for content
-    HASHTAG_SIZE = 36   # Slightly smaller for hashtags
+    USERNAME_SIZE = 36   # Slightly larger for better visibility
+    TITLE_SIZE = 52     # Larger size for title
+    CONTENT_SIZE = 46   # Medium size for content
+    HASHTAG_SIZE = 40   # Slightly larger for hashtags
     
-    MARGIN = 10      # Small margin to maximize usable width
-    LINE_HEIGHT = 40  # Line height in dots
+    MARGIN = 5       # Minimal margin to maximize usable width
+    LINE_HEIGHT = 45  # Slightly increased line height for better readability
+    
+    # Additional styling constants
+    USERNAME_SPACING = 25  # Space after username
+    TITLE_SPACING = 35    # Space after title
+    CONTENT_SPACING = 35  # Space after content
+    HASHTAG_SPACING = 25  # Space after hashtags
     
     def __init__(self, config: Dict):
         # Find printer port
@@ -176,7 +182,7 @@ class M08FPrinter:
                     line_heights.append(height + 10)  # Add 10 dots padding
             else:
                 all_lines.append('')  # Keep empty lines for spacing
-                line_heights.append(20)  # Height for empty lines
+                line_heights.append(self.LINE_HEIGHT)  # Height for empty lines
                 
         # Calculate total height needed
         total_height = sum(line_heights)
@@ -216,7 +222,7 @@ class M08FPrinter:
         hashtag_font = self._get_font(self.HASHTAG_SIZE)
         
         # Create image with estimated height
-        total_height = 300  # Initial estimate
+        total_height = 400  # Increased initial estimate for better sizing
         img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
         draw = ImageDraw.Draw(img)
         
@@ -224,7 +230,7 @@ class M08FPrinter:
         username = f"@{text['username']}"
         bbox = username_font.getbbox(username)
         draw.text((self.MARGIN, 20), username, font=username_font, fill=0)
-        current_y = 80  # Space after username
+        current_y = 20 + bbox[3] - bbox[1] + self.USERNAME_SPACING
         
         # Draw title
         wrapped_title = self._wrap_text(text['title'], title_font)
@@ -232,7 +238,7 @@ class M08FPrinter:
             bbox = title_font.getbbox(line)
             draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
             current_y += bbox[3] - bbox[1] + 10
-        current_y += 40  # Extra space after title
+        current_y += self.TITLE_SPACING
         
         # Draw content if present
         if text['content']:
@@ -241,7 +247,7 @@ class M08FPrinter:
                 bbox = content_font.getbbox(line)
                 draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
                 current_y += bbox[3] - bbox[1] + 10
-            current_y += 40  # Extra space after content
+            current_y += self.CONTENT_SPACING
         
         # Draw hashtags if present
         if text['hashtags']:
@@ -254,9 +260,10 @@ class M08FPrinter:
                 x = self.MAX_WIDTH - width - self.MARGIN
                 draw.text((x, current_y), line, font=hashtag_font, fill=0)
                 current_y += bbox[3] - bbox[1] + 10
+            current_y += self.HASHTAG_SPACING
         
         # Crop image to actual height
-        return img.crop((0, 0, self.MAX_WIDTH, current_y + 20))
+        return img.crop((0, 0, self.MAX_WIDTH, current_y + 15))
         
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""

@@ -65,6 +65,7 @@ def main():
                     last_print_time = current_time
                 else:
                     print(f"{Fore.YELLOW}No unprinted tweets found.{Fore.RESET}")
+                    time.sleep(5)  # Wait a bit longer when no tweets are found
             
             time.sleep(1)  # Check every second
             
