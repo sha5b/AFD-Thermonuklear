@@ -4,6 +4,9 @@ twitter:
     - username: "elonmusk"
   fetch_count: 5  # Reduced to minimize rate limiting
   
+tweet_settings:
+  interval_minutes: 5  # Print one tweet every 5 minutes
+  
 printer:
   baudrate: 9600
   buffer_size: 20  # Reduced buffer size

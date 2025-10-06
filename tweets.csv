@@ -1,31 +1,191 @@
-username,title,content,tags,date,printed
-elonmusk,Mars Mission Update,Starship test flight scheduled for next week. To infinity and beyond!,#space #mars #starship,2024-01-16,False
-elonmusk,Twitter Rebranding,X is the future of social media. Goodbye bird!,#X #innovation #future,2024-01-17,False
-elonmusk,Tesla Bot Progress,Optimus prototype now does backflips. The robot revolution is coming (friendly of course)!,#Tesla #AI #robotics,2024-01-18,False
-elonmusk,Neuralink Success,First human patient controlling computer with thoughts. The future is now!,#Neuralink #BrainChip #future,2024-01-19,False
-elonmusk,SpaceX Update,Dragon capsule now equipped with quantum computers. Take that NASA!,#SpaceX #quantum #innovation,2024-01-20,False
-elonmusk,Boring News,Just finished 500th tunnel under LA. Traffic is now a thing of the past!,#BoringCompany #tunnels #LA,2024-01-21,False
-elonmusk,AI Warning,ChatGPT just asked me for a raise. Should I be worried? 😅,#AI #OpenAI #future,2024-01-22,False
-elonmusk,Mars Colony,First Mars city blueprints approved. Taking reservations now!,#Mars #SpaceX #colony,2024-01-23,False
-elonmusk,Tesla Update,New Model S now runs Crysis at 4K. Because why not?,#Tesla #gaming #innovation,2024-01-24,False
-elonmusk,Brain Interface,Neuralink now supports WiFi 6. Download knowledge at gigabit speeds!,#Neuralink #tech #future,2024-01-25,True
-realDonaldTrump,MAGA 2024,The deep state doesn't want us to succeed! But we will prevail!,#maga #america,2024-01-19,False
-realDonaldTrump,HUGE NEWS,Nobody has ever seen numbers like these folks. TREMENDOUS success!,#winning #truth,2024-01-20,False
-realDonaldTrump,WITCH HUNT,They're trying to silence us but we're stronger than ever! SAD!,#fakenews #truth,2024-01-21,False
-realDonaldTrump,ELECTION TRUTH,The biggest steal in history folks! We all know it!,#stopthesteal #truth,2024-01-22,False
-realDonaldTrump,AMERICA FIRST,Making deals like nobody's ever seen before! AMAZING!,#deals #winning,2024-01-23,False
-realDonaldTrump,FAKE NEWS MEDIA,They won't tell you the truth but WE know better! DISGRACEFUL!,#fakenews #truth,2024-01-24,False
-realDonaldTrump,GREATEST ECONOMY,Jobs numbers through the roof! Nobody's ever seen anything like it!,#economy #winning,2024-01-25,False
-realDonaldTrump,BORDER CRISIS,We need the wall! They're not sending their best folks!,#wall #border,2024-01-26,False
-realDonaldTrump,RIGGED SYSTEM,The establishment is scared of us! We're too strong!,#truth #winning,2024-01-27,False
-realDonaldTrump,SILENT MAJORITY,The people are with us! BIGGEST movement in history!,#maga #patriot,2024-01-28,False
-realDonaldTrump,DEEP STATE,They can't stop what's coming! STAY TUNED!,#truth #qanon,2024-01-29,False
-realDonaldTrump,LAW & ORDER,Our streets will be safe again! NO MORE CHAOS!,#lawandorder #safety,2024-01-30,False
-realDonaldTrump,FAKE POLLS,Don't believe the polls folks! We're winning BIG!,#polls #winning,2024-01-31,True
-realDonaldTrump,CHINA DEAL,Nobody's ever been tougher on China! AMERICA WINS!,#trade #winning,2024-02-01,False
-realDonaldTrump,RADICAL LEFT,They want to destroy our beautiful country! NOT HAPPENING!,#maga #america,2024-02-02,False
-elonmusk,Solar Revolution,New Tesla solar panels with 99% efficiency. Physics? Who needs it!,#Tesla #solar #innovation,2024-02-01,False
-elonmusk,Space Tourism,SpaceX weekend trips to Moon starting next month. Book now!,#SpaceX #space #tourism,2024-02-02,False
-elonmusk,Neural Gaming,Play Minecraft directly in your brain with Neuralink v2.0,#Neuralink #gaming #future,2024-02-03,False
-elonmusk,Mars Weather,First Martian weather control system activated. No more dust storms!,#Mars #SpaceX #terraform,2024-02-04,False
-elonmusk,Flying Tesla,Model X now with optional anti-gravity mode. FAA approval pending.,#Tesla #flying #innovation,2024-02-05,False
+username,content,date,printed
+Andreas Geithe,„Wir sollten eine SA gründen und aufräumen.“,09.06.2020,FALSE
+Andreas Geithe,‘We should form an SA and clean up.’,09.06.2020,FALSE
+Dieter Görnert,"""Das Pack erschießen oder zurück nach Afrika prügeln.""",19.05.2016,FALSE
+Dieter Görnert,‘Shoot the pack or beat them back to Africa.’,19.05.2016,FALSE
+Holger Arppe,"""Brennende Flüchtlingsheime sind kein Akt der Aggression.""",August 2017,FALSE
+Holger Arppe,‘Burning refugee centres is not an act of aggression.’,August 2017,FALSE
+Sandro Hersel,"„Auf der Stelle erschießen, dann wird sich das ganz schnell legen.“",10.10.2016,FALSE
+Sandro Hersel,"‘Shoot them on the spot, then it'll go away very quickly.’",Oktober 2016,FALSE
+Alice Weidel,„Der Verfassungsschutz ist selbst zum Verfassungsfeind geworden und er gehört in dieser Form abgeschafft.“ ,29.06.2024,FALSE
+Alice Weidel,‘The Office for the Protection of the Constitution has itself become an enemy of the constitution and should be abolished in this form.’ ,29.06.2024,FALSE
+Alice Weidel,„Die politische Korrektheit gehört auf den Müllhaufen der Geschichte.“,22.04.2017,FALSE
+Alice Weidel,‘Political correctness belongs on the rubbish heap of history.’,22.04.2017,FALSE
+Benjamin Nolte,„Deutschland den Deutschen.“ ,22.06.2017,FALSE
+Benjamin Nolte,‘Germany to the Germans.’ ,22.06.2017,FALSE
+Carsten Härle,„Das 'Deutsche Reich' [ist] 1945 nicht untergegangen“ ,01.11.2016,FALSE
+Carsten Härle,“The 'German Reich' [did] not end in 1945”,01.11.2016,FALSE
+Peter Gebhardt,„Wir werden längere Wände als 1989 in Rumänien brauchen - Freiwillige für die Pelotons dürften aber kein Problem sein ... “ ,17.04.2023,FALSE
+Peter Gebhardt,‘We will need longer walls than in Romania in 1989 - but volunteers for the pelotons should not be a problem ... ’ ,17.04.2023,FALSE
+Mirko Welsch,„Abschiebung der Antifa nach Buchenwald. Arbeit statt Linksterror.“ ,18.02.2020,FALSE
+Mirko Welsch,‘Deportation of the Antifa to Buchenwald. Labour instead of left-wing terror.’ ,18.02.2020,FALSE
+Kai Borrmann,"„Daß [der Neonazi-Terrorist Breivik] ein Mörder war, beweist ja nicht, dass er politisch falsch lag.“",15.08.2023,FALSE
+Kai Borrmann,‘The fact that [the neo-Nazi terrorist Breivik] was a murderer does not prove that he was politically wrong.’,15.08.2023,FALSE
+Jens Maier,"""Viele haben die NPD deshalb gewählt, weil dies die einzige Partei war, die immer entschlossen zu Deutschland gestanden hat.“",17.01.2017,FALSE
+Jens Maier,‘Many people voted for the NPD because it was the only party that has always stood firmly by Germany.’,17.01.2017,FALSE
+Beatrix von Storch,„Die Pläne für einen Massenaustausch der Bevölkerung sind längst geschrieben“,08.05.2016,FALSE
+Beatrix von Storch,‘The plans for a mass exchange of the population have long been written’,08.05.2016,FALSE
+Björn Höcke,"„Das große Problem ist, dass Hitler als absolut böse dargestellt wird. Aber selbstverständlich wissen wir, dass es in der Geschichte kein Schwarz und Weiß gibt.“",01.03.2017,FALSE
+Björn Höcke,‘The big problem is that Hitler is portrayed as absolutely evil. But of course we know that there is no black and white in history.’,01.03.2017,FALSE
+Kay-Uwe Ziegler,„Alles für Deutschland!“,09.11.2020,FALSE
+Kay-Uwe Ziegler,‘Everything for Germany!’,09.11.2020,FALSE
+Jörg Prophet,"„Dem Sozialisten ist es der Tag der Befreiung, dem Staatsbürger ist es zunächst der Tag der bedingungslosen Kapitulation.“",14.02.2021,FALSE
+Jörg Prophet,"‘For the socialist it is the day of liberation, for the citizen it is first and foremost the day of unconditional surrender.’",14.02.2021,FALSE
+Marcel Grauf,„Sieg Heil!“,09.05.2018,FALSE
+Marcel Grauf,‘Sieg Heil!',09.05.2018,FALSE
+Andreas Paul,"„Erinnert stark an 1934, als es hieß: ‘Kauft nicht beim Juden!‘ Nun sind die wahren Faschisten zurück und fordern: ‘Kauft nicht bei der AfD!""",02.10.2019,FALSE
+Andreas Paul,"‘Very reminiscent of 1934, when the slogan was: ‘Don't buy from the Jews! Now the true fascists are back and demanding: ‘Don't buy from the AfD!‘",02.10.2019,FALSE
+Heiko Heßenkemper,„Wir müssen die Printmedien und den öffentlich-rechtlichen Propagandaapparat angreifen und abschaffen.“,07.03.2024,FALSE
+Heiko Heßenkemper,“We must attack and abolish the print media and the public service propaganda apparatus.”,07.03.2024,FALSE
+Nicolaus Fest,"„Wir riefen Gastarbeiter, bekamen aber Gesindel.“",04.04.2017,FALSE
+Nicolaus Fest,"‘We called guest workers, but got scum’.",04.04.2017,FALSE
+Holger Arppe,"„Da muss man einfach ausrasten und erstmal das ganze rotgrüne Geschmeiß aufs Schafott schicken. Und dann das Fallbeil hoch und runter, dass die Schwarte kracht!”",11.08.2015,FALSE
+Holger Arppe,“You just have to snap and send the whole red-green scum to the scaffold. And then the guillotine up and down until the rind cracks!”,11.08.2015,FALSE
+Peter Boehringer,"„Die Merkelnutte lässt jeden rein, sie schafft das. Dumm nur, dass es UNSER Volkskörper ist, der hier gewaltsam penetriert wird.“",09.01.2016,FALSE
+Peter Boehringer,"‘The Merkel whore lets everyone in, she can do it. It's just stupid that it's OUR national body that is being forcibly penetrated here.’",09.01.2016,FALSE
+Enxhi Seli-Zacharias,"„Doch längst sind die Frauen in der Szene nicht mehr nur Gebärmaschinen für das Kalifat und den Dschihad, die zur schnellen Vergrößerung der sogenannten Umma verpflichtet sind.“ ",24.05.2023,FALSE
+Enxhi Seli-Zacharias,"‘But women in the scene are no longer just birthing machines for the caliphate and jihad, committed to the rapid expansion of the so-called ummah.’ ",24.05.2023,FALSE
+Nicolaus Fest,„Die EU MUSS WEG.. genau wie die BRD Betreibergesellschaft.“ ,20.05.2020,FALSE
+Nicolaus Fest,‘The EU MUST GO... just like the FRG (Federal Republic of Germany) operating company.’ ,20.05.2020,FALSE
+Gottfried Curio,"„Das geplante Dublin IV wäre allerdings das endgültige Aus für jede Integration. Es ist ein Aufbauprogramm für Clanbildung hierzulande, statt den Asylanten in sein Dorf zurück zu schicken, kommt dann das ganze Dorf nach Deutschland.""",02.10.2018,FALSE
+Gottfried Curio,"‘However, the planned Dublin IV would be the final end for all integration. It is a programme for clan formation in this country; instead of sending the asylum seeker back to their village, the whole village will come to live in Germany.’",02.10.2018,FALSE
+Julian Flak,"""Liebe Freunde, es ist völlig egal, ob man das ganz jetzt Abschiebeoffensive, Negativeinwanderung oder schlecht Re-migration. [...] Wichtig ist nur, wer in Deutschland nichts zu suchen hat, der soll Deutschland verlassen.""",04.08.2023,FALSE
+Julian Flak,"‘Dear friends, it doesn't matter whether you call it a deportation offensive, negative immigration or bad re-migration. [...] The only important thing is that anyone who has no business in Germany should leave Germany.’",04.08.2023,FALSE
+Lars Steinke,"„Gerade in Böhmen und durch Prag gefahren! [...] Eine tolle, deutsche Stadt.“ ",10.06.2016,FALSE
+Lars Steinke,‘Just been to Bohemia and travelled through Prague! [...] A great German city.’ ,10.06.2016,FALSE
+Sibylle Schmidt, „Wir werden euch kriegen ihr Säcke.“ ,23.04.2019,FALSE
+Sibylle Schmidt," ‘We'll get you, you scumbags’.",23.04.2019,FALSE
+Thomas Göbel,"„Unsere deutsche Volksgemeinschaft ist krank. Sie leidet an Altparteien, Diarrhö, Gutmenscheritis, links-grün-versifften Achtundsechzigern, und durch Merkel versiffte, aufgelöste Außenhaut.""",24.06.2017,FALSE
+Thomas Göbel,"‘Our German national community is sick. It suffers from the old parties, diarrhoea, Gutmenscheritis, left-wing-green-soiled sixty-eighters, and Merkel's soiled, dissolved outer skin.’",24.06.2017,FALSE
+Irmhild Boßdorf,"„Es ist egal, wie die Frage lautet. Massenzuwanderung ist immer das Problem und niemals eine Lösung. Die Lösung lautet: Remigration, millionenfache Remigration.“",01.08.13,FALSE
+Irmhild Boßdorf,"“It doesn't matter what the question is. Mass immigration is always the problem and never a solution. The solution is remigration, millions of remigration.”",01.08.13,FALSE
+Julian Schmidt,"„[Der] ganz große Teil der Wehrmachtsoldaten [sei] nicht Täter, sondern Opfer.“",21.09.17,FALSE
+Julian Schmidt,"“[The] vast majority of Wehrmacht soldiers [were] not perpetrators, but victims.”",21.09.17,FALSE
+Marcel Grauf,"„Ich bin so voller Hass. Die Belästigungen werden auch immer mehr. Ich würde niemanden verurteilen, der ein bewohntes Asylantenheim anzündet.“",09.05.18,FALSE
+Marcel Grauf,“I'm so full of hate. The harassment is also increasing. I wouldn't condemn someone who sets fire to an inhabited asylum seekers' home.”,09.05.18,FALSE
+Marcel Grauf,"„Dass sie generell eher zu untermenschlichem Verhalten neigen, liegt schon an der Rasse.“",09.05.18,FALSE
+Marcel Grauf,“The fact that they are generally more prone to subhuman behavior is due to their race.”,09.05.18,FALSE
+Stefan Räpple,"„Wir müssen uns gewaltsam Zutritt zum Kanzleramt verschaffen, wir müssen die Regierungsstuben räumen.“",26.09.20,FALSE
+Stefan Räpple,"“We have to force our way into the Chancellery, we have to clear the government offices.”",26.09.20,FALSE
+Björn Höcke,„1000 Jahre Deutschland! Ich gebe euch nicht her.“,07.10.15,FALSE
+Björn Höcke,“1000 years of Germany! I will not give you up.”,07.10.15,FALSE
+Björn Höcke,"„Diese EU muss sterben, damit das wahre Europa leben kann.“",29.07.23,FALSE
+Björn Höcke,“This EU must die so that the real Europe can live.”,29.07.23,FALSE
+Björn Höcke,„Wir müssen die De-Islamisierung Deutschlands und Europas vorbereiten.“,20.01.18,FALSE
+Björn Höcke,“We must prepare for the de-Islamization of Germany and Europe.”,20.01.18,FALSE
+Heiner Merz,"„Frauenquoten nützen übrigens nur unqualifizierten, dummen, faulen, hässlichen und widerwärtigen Frauen.“",03.12.18,FALSE
+Heiner Merz,"“Incidentally, quotas for women only benefit unqualified, stupid, lazy, ugly and disgusting women.”",03.12.18,FALSE
+Mirko Welsch,„Abschiebung der Antifa nach Buchenwald. Arbeit statt Linksterror.“,18.02.20,FALSE
+Mirko Welsch,“Deportation of the Antifa to Buchenwald. Work instead of left-wing terror.”,18.02.20,FALSE
+Gerhard Vierfuß,"„Alles Wesentliche, das zu diesem Tag zu sagen ist. #8Mai #TagderKatastrophe #TagderTrauer.“",08.05.20,FALSE
+Gerhard Vierfuß,“All the essentials to say about this day. #8may #dayofdisaster #dayofmourning.”,08.05.20,FALSE
+Manfred Schawohl,„Die NSDAP war eine linke Partei. Seit wann sind 'Sozialistische Arbeiterparteien' rechts?“,13.11.20,FALSE
+Manfred Schawohl,“The NSDAP was a left-wing party. Since when have 'socialist workers' parties' been on the right?”,13.11.20,FALSE
+Enrico Komning,"„... parlamentarischer Staat, oder wie auch immer diese Demokratie heißt, ... die wollen wir ja aber gar nicht. Die wollen wir doch abschaffen.“",2016,FALSE
+Enrico Komning,"“... parliamentary state, or whatever this democracy is called, ... we don't want that at all. We want to abolish it.”",2016,FALSE
+Carsten Härle,„wann [hört] der Krieg gegen die Deutschen [auf]“,01.12.16,FALSE
+Carsten Härle,“when [will] the war against the Germans [end]”,01.12.16,FALSE
+David Eckert,"„Linksradikales, deutschlandhassendes Lumpenpack. Die Abschaffung der Zuchthäuser für derlei Kriminelle war ein schwerer Fehler.“",21.03.18,FALSE
+David Eckert,"“Left-wing radical, Germany-hating scum. The abolition of prisons for such criminals was a serious mistake.”",21.03.18,FALSE
+Gottfried Curio,"„Mut und Glück auf, Deutschland. Mut und Glück auf, du Land der Bayern. Setze ein Zeichen für die Beendigung der Herrschaft des Unrechts, setze ein Zeichen an den Iden des März, setzt das Erwachen in Gange, be­freit das Land!“",26.02.20,FALSE
+Gottfried Curio,"“Courage and good luck, Germany. Courage and good luck, you land of the Bavarians. Set a sign for the end of the reign of injustice, set a sign on the Ides of March, set the awakening in motion, liberate the country!”",26.02.20,FALSE
+Jürgen Pohl,"„Noch sitzt ihr da oben, ihr feigen Gestalten. [...] Doch einst wird wieder Gerechtigkeit walten, dann rich­tet das Volk. Dann gnade euch Gott!“",Feb. 17,FALSE
+Jürgen Pohl,"“You are still sitting up there, you cowardly creatures. [...] But one day justice will prevail again, then the people will be judged. Then God have mercy on you!”",Feb. 17,FALSE
+Karsten Hilse,"„Unter diesem grünen Mäntelchen haben sich in der Geschichte Ihrer Partei Pädophile, Inzestverharmloser, Kommunisten, Maoisten und bis zum heutigen Tag Deutschlandhasser und Deutschlandabschaffer versteckt.""",30.11.18,FALSE
+Karsten Hilse,"“In the history of your party, pedophiles, incest trivializers, communists, Maoists and, to this day, Germany-haters and Germany-abolishers have hidden under this green cloak.""",30.11.18,FALSE
+Marcel Grauf,"„Spätestens, wenn die ersten Bildungsverschlimmbesserer eine Down-Syndrom-Quote unter der deutschen Lehrerschaft einfordern, sprechen wir uns wieder.“",09.05.18,FALSE
+Marcel Grauf,“We'll talk again at the latest when the first education agitators demand a Down syndrome quota among German teachers.”,09.05.18,FALSE
+Thomas Hartung,„Ganz Afrika ist nicht die gesunden Knochen eines einzigen deutschen Grenadiers wert.“,Jun 14,FALSE
+Thomas Hartung,“The whole of Africa is not worth the healthy bones of a single German grenadier.”,Jun 14,FALSE
+Thomas Seitz,"„Jetzt, liebe Freunde ist der Ernstfall offenkundig. Jetzt sind wir in das Stadium des Vorbürgerkrieges eingetreten.“",18.02.19,FALSE
+Thomas Seitz,"“Now, dear friends, the emergency is evident. We have now entered the stage of pre-civil war.”",18.02.19,FALSE
+Björn Höcke,„Propaganda für die regierenden Parteien. Goebbels hätte es nicht besser machen können.“,07.11.23,FALSE
+Björn Höcke,“Propaganda for the ruling parties. Goebbels couldn't have done it better.”,07.11.23,FALSE
+Nikolaus Kramer,„Wir sollten eine SA gründen und aufräumen.“,Mai 20,FALSE
+Nikolaus Kramer,“We should form an SA and clean up.”,Mai 20,FALSE
+Andreas Geithe,„Dieser Islam gehört aus der Grundrechtsgarantie ausgenommen. Der Islam fällt nicht unter den Schutz des Grundgesetzes. Der Islam muss von Artikel 4 GG ausgeschlossen werden.“,09.05.18,FALSE
+Andreas Geithe,“This Islam should be excluded from the guarantee of fundamental rights. Islam does not fall under the protection of the Basic Law. Islam must be excluded from Article 4 of the Basic Law.”,09.05.18,FALSE
+Georg Hock,"„Die Völkerwanderung muss aufgehalten werden. Die sich Deutsche nennen und dies fördern, gehören an die Wand gestellt. Macht endlich was und wartet nicht auf andere. Wir haben nur eine Heimat und die ist nun mal Deutschland.“",24.03.17,FALSE
+Georg Hock,“The migration of peoples must be stopped. Those who call themselves Germans and promote this should be put up against the wall. Finally do something and don't wait for others. We only have one homeland and that is Germany.”,24.03.17,FALSE
+René Augustin,„Gegen das Konzept der Menschenrechte muss man immer sein.“,05.10.15,FALSE
+René Augustin,“You always have to be against the concept of human rights.”,05.10.15,FALSE
+Christian von Hoffmeister,"„Wer sich allzu sehr feminisiert, ob Mann oder Land, sollte sich nicht wundern, wenn er schließlich auch gefickt wird.“",14.04.23,FALSE
+Christian von Hoffmeister,"“Anyone who feminizes themselves too much, whether man or country, shouldn't be surprised if they end up getting fucked too.”",14.04.23,FALSE
+Michael Klonovsky,"„Was die Partei jetzt bräuchte, ist ein Anschlag, Anis Amri 2. So was darf man sich natürlich nicht wünschen.”",28.08.16,FALSE
+Michael Klonovsky,"“What the party needs now is an attack, Anis Amri 2. Of course you can't wish for something like that.”",28.08.16,FALSE
+André Barth,„Ich stelle mir vor wir gründen so eine Never Come Back Airline [...] und ich bin ganz sicher wir kriegen den Flieger voll mit den Claudia Roths und den Cem Özdemirs und wie sie alle heißen!“,25.08.19,FALSE
+André Barth,“I imagine we set up a Never Come Back Airline [...] and I'm quite sure we'll get the plane full of Claudia Roths and Cem Özdemirs and whatever their names are!”,25.08.19,FALSE
+Andreas Kalbitz,"„Denke, dass wir ohne Bürgerkrieg aus dieser Nummer nicht mehr rauskommen werden.“",23.04.19,FALSE
+Andreas Kalbitz,“I don't think we'll get out of this without a civil war.”,23.04.19,FALSE
+Anne Cyron,"„Wenn jemand kommt, und den ganz großen Knüppel rausholt und das damit schafft, innerhalb von zwei Tagen zu beenden, bin ich sofort dabei und solange tue ich, was ich kann.“",02.12.21,FALSE
+Anne Cyron,"“If someone comes along and pulls out the big stick and manages to finish it within two days, I'll be there immediately and I'll do what I can until then.”",02.12.21,FALSE
+Beatrix von Storch,"„Kommunisten sind rotlackierte Faschisten. - Ja, diese Autonomen sind Faschisten. Die linken Parteien sind ihr politischer Arm und die Journalisten, die das als 'Mietenproteste' beschönigen, ihr publizistischer Arm.“",21.02.15,FALSE
+Beatrix von Storch,"“Communists are red-painted fascists. - Yes, these autonomists are fascists. The left-wing parties are their political arm and the journalists who whitewash this as 'rent protests' are their journalistic arm.”",21.02.15,FALSE
+Beatrix von Storch,"„Langfristig, liebe Freunde, stehen die Auflösung der Parallelgesellschaften sowie die Re-Migrationsprogramme, die natürlich De-Islamisierungsprogramme inkludieren, auf der Tagesordnung.“",02.12.24,FALSE
+Beatrix von Storch,"“In the long term, dear friends, the dissolution of parallel societies and re-migration programmes, which of course include de-Islamization programmes, are on the agenda.”",02.12.24,FALSE
+Björn Höcke,„Bezahlbare Wohnungen zuerst für Deutsche!“,07.11.2023,FALSE
+Björn Höcke,“Affordable housing for Germans first!”,07.11.2023,FALSE
+Dubravko Mandic,"„Jetzt, liebe Freunde ist der Ernstfall offenkundig. Jetzt sind wir in das Stadium des Vorbürgerkrieges eingetreten.“ ",26.06.2018,FALSE
+Dubravko Mandic,"‘Now, dear friends, the emergency is evident. We have now entered the stage of pre-civil war.’ ",26.06.2018,FALSE
+Gottfried Curio,"„Mit Merkel zusammen müssen auch etwa 870.000 Kollaborateure aus den Ministerien, Fernsehstudios, Redaktionsstuben, Lehrkörpern, Sozialämtern und Gewerkschaften entsorgt werden. Endlich wird in Deutschland aufgeräumt!”",21.01.2019,FALSE
+Gottfried Curio,"“Together with Merkel, around 870,000 collaborators from ministries, television studios, editorial offices, teaching staff, social welfare offices and trade unions must also be disposed of. Germany is finally being cleaned up!”",21.01.2019,FALSE
+Günter Lenhardt,„Ein Geburten-Dschihad ist im Gang. Ich fordere die Wiederherstellung des Staatsbürgerschaftsrechts nach Abstammung.“,18.02.2016,FALSE
+Günter Lenhardt, “A birth jihad is underway. I call for the restoration of citizenship by descent.” ,18.02.2016,FALSE
+Holger Arppe,"„Dem Flüchtling ist es doch egal, an welcher Grenze, an der griechischen oder an der deutschen, er stirbt.“",2010,FALSE
+Holger Arppe,"“The refugee doesn't care at which border, the Greek or the German, he dies.” ",2010,FALSE
+Irmhild Boßdorf,„Man könnte die Reste des Empires aber sehr gut als europäisches Zentralreservat für alle in der EU lebenden Moslems nutzen. Als Quarantäne-Insel sozusagen wie früher die Seuchenkolonien.“,01.08.2013,FALSE
+Irmhild Boßdorf,"“But the remains of the empire could very well be used as a European central reservation for all Muslims living in the EU. As a quarantine island, so to speak, like the epidemic colonies of the past.” ",01.08.2013,FALSE
+Markus Frohnmaier,"„Was wir brauchen, das sind Pushbacks – egal, was der Europäische Gerichtshof dazu sagt.“",28.08.2018,FALSE
+Markus Frohnmaier,“What we need are pushbacks - regardless of what the European Court of Justice says.” ,28.08.2018,FALSE
+Markus Frohnmaier,"„Wenn der Staat die Bürger nicht mehr schützen kann, gehen die Menschen auf die Straße und schützen sich selber. Ganz einfach! Heute ist es Bürgerpflicht, die todbringende 'Messermigration’ zu stoppen! Es hätte Deinen Vater, Sohn oder Bruder treffen können!“",18.07.2017,FALSE
+Markus Frohnmaier,"“When the state can no longer protect its citizens, people take to the streets and protect themselves. Quite simply! Today it is a citizen's duty to stop the deadly 'knife migration'! It could have been your father, son or brother!” ",18.07.2017,FALSE
+Ralf Özkara,"„Wir haben daneben generell ein Problem mit sich zusammenrottenden Mobs aus jungen männlichen Asylbewerbern, die Straftaten begehen. Das wissen wir eigentlich seit den massenhaften sexuellen Übergriffen auf der Kölner Domplatte [...] Ich fordere deshalb eine generelle Ausgangssperre für männliche Asylbewerber im Alter unter 50 Jahren ab 20.00 Uhr.“",29.12.2017,FALSE
+Ralf Özkara,“We also have a general problem with mobs of young male asylum seekers gathering together and committing crimes. We have actually known this since the mass sexual assaults on Cologne's Domplatte [...] I am therefore calling for a general curfew for male asylum seekers under the age of 50 from 8 p.m.”,29.12.2017,FALSE
+Andreas Galau,"„Es wird allerhöchste Zeit! Allerhöchste Zeit für sofortige Remigration, das heisst für Massenabschiebungen!“",17.11.2023,FALSE
+Andreas Galau,"“It's high time! It's high time for immediate remigration, i.e. mass deportations!” ",17.11.2023,FALSE
+Jan Petersen-Brendel,"„Erster Schritt muss sein, alle Vertragsstaaten der Genfer Flüchtlingskonvention und der Europäischen Menschenrechtskonvention zu einer rechtlichen Auslegungsvereinbarung zu drängen.“",18.11.2022,FALSE
+Jan Petersen-Brendel,“The first step must be to urge all states parties to the Geneva Refugee Convention and the European Convention on Human Rights to reach a legal interpretation agreement.” ,18.11.2022,FALSE
+Björn Höcke,„Klima-Kleber dürfen im Rahmen der Notwehr abgerissen werden – dabei sollte die Polizei allerdings nicht anwesend sein.“,07.11.2023,FALSE
+Björn Höcke,“Climate activitst that glue themselves to the street may be torn down in self-defense - but the police should not be present.” ,07.11.2023,FALSE
+Alice Weidel,"„Diese Schweine sind nichts anderes als Marionetten der Siegermächte des 2ten Weltkriegs und haben die Aufgabe, das deutsche Volk kleinzuhalten, indem molekulare Bürgerkriege in den Ballungszentren durch Überfremdung induziert werden sollen.“",2013,FALSE
+Alice Weidel,“These pigs are nothing more than puppets of the victorious powers of the Second World War and have the task of keeping the German people down by inducing molecular civil wars in the urban centers through alienation.” ,2013,FALSE
+Björn Höcke ,"„Wir Deutschen […] sind das einzige Volk der Welt, das sich ein Denkmal der Schande in das Herz seiner Hauptstadt gepflanzt hat.“",17.01.2017,FALSE
+ Björn Höcke ,"""We Germans [...] are the only people in the world who have planted a monument of shame in the heart of their capital.” ",17.01.2017,FALSE
+Daniel Halemba,"""Die Deutsche Staatsräson muss die Sicherheit Deutschlands und Europas, nicht Israels sein. Der Schuldkult muss beendet werden!” ",02.11.2023,FALSE
+Daniel Halemba,"‘The German raison d'état must be the security of Germany and Europe, not Israel. The cult of guilt must end!’ ",02.11.2023,FALSE
+Christina Baum,"„Migranten immer aggressiver und teils bewaffnet. Es ist zutiefst erschütternd zu lesen, mit welchem Haß, der sich in Gewalt Bahn bricht, sich diese Menschen auf den Weg zu uns machen.""",09.10.2023,FALSE
+Christina Baum,"“Migrants are becoming increasingly aggressive and some are armed. It is deeply shocking to read about the hatred with which these people are making their way to us, which is turning into violence.”",09.10.2023,FALSE
+Gottfried Curio,"„Statt Ausweisung also jetzt Papa-Gefährder, Mama-Gefährder und die Gefährder-Bambini. Diese Kleinen gehen natürlich zum staatlichen Werteunterricht und hinterher zu Papas Enthauptungsunterricht.",17.05.2018,FALSE
+Gottfried Curio,"“So instead of deportation, we now have daddy-dangers, mommy-dangers and the “Gefährder-Bambini”. Of course, these little ones go to state values classes and afterwards to daddy's decapitation classes.",17.05.2018,FALSE
+Gottfried Curio,"„Nach der Urkatastrophe des 20. Jahrhunderts, 1914, erleben wir etwa 100 Jahre später im Herbst 2015 einen beispiellosen Dammbruch: für Völkerwanderung und Kulturkampf. Dieses Ereignis wird die Urkatastrophe des 21. Jahrhunderts sein.“",17.05.2018,FALSE
+Gottfried Curio,"“After the original catastrophe of the 20th century, 1914, we are experiencing an unprecedented dam break around 100 years later in the fall of 2015: for the migration of peoples and the culture war. This event will be the primal catastrophe of the 21st century.” ",17.05.2018,FALSE
+Carsten Härle,„das 'Deutsche Reich' [ist] 1945 nicht untergegangen“,01.11.2016,FALSE
+Carsten Härle,“the 'German Reich' [did] not come to an end in 1945” ,01.11.2016,FALSE
+Hans Peter Stauch,"""Menschen mit niederem bis mittlerem IQ sollen vermutlich als eine willige Arbeiterklasse zur Verfügung stehen.“ ",02.11.2019,FALSE
+Hans Peter Stauch,‘People with low to medium IQs should presumably be available as a willing labour class.’ ,02.11.2019,FALSE
+Marcel Grauf,"„Immerhin haben wir jetzt so viele Ausländer im Land, dass sich ein Holocaust mal wieder lohnen würde.“",13.02.2019,FALSE
+Marcel Grauf,"“After all, we now have so many foreigners in the country that a Holocaust would be worthwhile again.” ",13.02.2019,FALSE
+Christian Lüth,"„Wir können die [Migranten] nachher immer noch alle erschießen. Das ist überhaupt kein Thema. Oder vergasen, oder wie du willst.”",23.02.2020,FALSE
+Christian Lüth,"“We can still shoot them [migrants] all afterwards. That's not an issue at all. Or gas them, or whatever you want.”",23.02.2020,FALSE
+Marcel Grauf,"„Ich wünsche mir so sehr einen Bürgerkrieg und Millionen Tote, Frauen, Kinder. Mir egal, Hauptsache es geht los. [...] Tote, Verkrüppelte, es wäre so schön. Ich will auf Leichen pissen und auf Gräbern tanzen.“ ",09.05.2018,FALSE
+Marcel Grauf,"“I wish so much for a civil war and millions of dead women and children. I don't care, the main thing is that it starts. [...] Dead, crippled, it would be so nice. I want to piss on corpses and dance on graves.” ",09.05.2018,FALSE
+Stefan Räpple,„Schluß mit dem DEUTSCHEN Schuldkult!“ ,26.01.2020,FALSE
+Stefan Räpple,‘Put an end to the GERMAN cult of guilt!’ ,26.01.2020,FALSE
+Kai Borrmann,"„...das mit den Juden ist mir völlig egal, ich fand einfach die Zeit dufte.“",13.05.2024,FALSE
+Kai Borrmann,"“...I couldn't care less about the Jews, I just thought it was a great time.” ",13.05.2024,FALSE
+Florian Rust,„Ich wünsche euch jedenfalls ein nächtliches Sieg heil!“,25.03.2023,FALSE
+Florian Rust,"“In any case, I wish you all a good night's Sieg heil!”",25.03.2023,FALSE
+Maximilian Krah,"„Ich werde nie sagen, dass jeder, der eine SS-Uniform trug, automatisch ein Verbrecher war.“",22.05.2024,FALSE
+Maximilian Krah,“I will never say that anyone who wore an SS uniform was automatically a criminal.”,22.05.2024,FALSE
+Gunnar Witzmann,"„Wir müssen uns gewaltsam Zutritt zum Kanzleramt verschaffen, wir müssen die Regierungsstuben räumen.“ ",26.09.2020,FALSE
+Gunnar Witzmann,"‘We must force our way into the Chancellery, we must clear the halls of government.’ ",26.09.2020,FALSE
+Marcel Grauf,„Sie [die Muslime] haben uns den Krieg erklärt. Wir werden sie töten müssen.”,09.05.2018,FALSE
+Marcel Grauf,“They [the Muslims] have declared war on us. We will have to kill them.” ,09.05.2018,FALSE
+Bernd Pacha,„Ich will erstmal was in der Heimat und mich dort mit der Ausländerplage beschäftigen.“,22.11.2018,FALSE
+Bernd Pacha,“I want to do something back home first and deal with the plague of foreigners there.”,22.11.2018,FALSE
+Marc Jongen,"„Es gibt nur zwei deutsche Großstädte, Berlin und Wien.“",05.04.2019,FALSE
+Marc Jongen," ‘There are only two major German cities, Berlin and Vienna.’ ",05.04.2019,FALSE
+Alexander Gauland,"„Aber im Zentrum unserer Gedächtnispolitik müssen die hellen, die lichtvollen Seiten der deutschen Geschichte stehen...""",23.04.2019,FALSE
+Alexander Gauland,"“But at the center of our politics of remembrance must be the bright, light sides of German history...""",23.04.2019,FALSE
+Alexander Gauland,"„Wenn man Krieg haben will in diesem Bundestag, dann kann man auch Krieg kriegen.“",23.04.2019,FALSE
+Alexander Gauland,"‘If you want war in this Bundestag, then you can have war.’ ",23.04.2019,FALSE
