@@ -30,10 +30,10 @@ class M08FPrinter:
     LINE_HEIGHT = 45  # Slightly increased line height for better readability
     
     # Additional styling constants
-    USERNAME_SPACING = 25  # Space after username
-    TITLE_SPACING = 35    # Space after title
-    CONTENT_SPACING = 35  # Space after content
-    HASHTAG_SPACING = 25  # Space after hashtags
+    USERNAME_SPACING = 30  # Space after username
+    TITLE_SPACING = 45    # Space after title
+    CONTENT_SPACING = 45  # Space after content
+    HASHTAG_SPACING = 30  # Space after hashtags
     
     def __init__(self, config: Dict):
         # Find printer port
@@ -222,15 +222,9 @@ class M08FPrinter:
         hashtag_font = self._get_font(self.HASHTAG_SIZE)
         
         # Create image with estimated height
-        total_height = 400  # Initial estimate
+        total_height = 500  # Increased estimate for better spacing
         img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
         draw = ImageDraw.Draw(img)
-        
-        # Draw username
-        username = f"@{text['username']}"
-        bbox = username_font.getbbox(username)
-        draw.text((self.MARGIN, 20), username, font=username_font, fill=0)
-        current_y = 20 + bbox[3] - bbox[1] + self.USERNAME_SPACING
         
         # Draw title (German content)
         wrapped_title = self._wrap_text(text['title'], title_font)
@@ -249,21 +243,29 @@ class M08FPrinter:
                 current_y += bbox[3] - bbox[1] + 15  # Line spacing
             current_y += self.CONTENT_SPACING
         
-        # Draw hashtags if present
-        if text['hashtags']:
-            hashtag_text = ' '.join(text['hashtags'])
-            wrapped_hashtags = self._wrap_text(hashtag_text, hashtag_font)
-            for line in wrapped_hashtags:
-                bbox = hashtag_font.getbbox(line)
-                width = bbox[2] - bbox[0]
-                # Right align hashtags
-                x = self.MAX_WIDTH - width - self.MARGIN
-                draw.text((x, current_y), line, font=hashtag_font, fill=0)
-                current_y += bbox[3] - bbox[1] + 15  # Line spacing
-            current_y += self.HASHTAG_SPACING
+        # Draw username and date on the same line
+        username = f"@{text['username']}"
+        date_text = text['date']
+        
+        # Get dimensions for both texts
+        username_bbox = username_font.getbbox(username)
+        date_bbox = hashtag_font.getbbox(date_text)
+        
+        # Position username on left and date on right
+        username_width = username_bbox[2] - username_bbox[0]
+        date_width = date_bbox[2] - date_bbox[0]
+        
+        # Draw username on left
+        draw.text((self.MARGIN, current_y), username, font=username_font, fill=0)
+        
+        # Draw date on right
+        date_x = self.MAX_WIDTH - date_width - self.MARGIN
+        draw.text((date_x, current_y), date_text, font=hashtag_font, fill=0)
+        
+        current_y += max(username_bbox[3] - username_bbox[1], date_bbox[3] - date_bbox[1]) + 25  # Increased spacing
         
         # Crop image to actual height
-        return img.crop((0, 0, self.MAX_WIDTH, current_y + 15))
+        return img.crop((0, 0, self.MAX_WIDTH, current_y + 25))
         
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""
