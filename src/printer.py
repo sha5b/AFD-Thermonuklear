@@ -30,10 +30,10 @@ class M08FPrinter:
     LINE_HEIGHT = 45  # Slightly increased line height for better readability
     
     # Additional styling constants
-    USERNAME_SPACING = 30  # Space after username
-    TITLE_SPACING = 45    # Space after title
-    CONTENT_SPACING = 45  # Space after content
-    HASHTAG_SPACING = 30  # Space after hashtags
+    USERNAME_SPACING = 60  # Space after username
+    TITLE_SPACING = 90    # Space after title
+    CONTENT_SPACING = 90  # Space after content
+    HASHTAG_SPACING = 60  # Space after hashtags
     
     def __init__(self, config: Dict):
         # Find printer port
@@ -222,31 +222,14 @@ class M08FPrinter:
         hashtag_font = self._get_font(self.HASHTAG_SIZE)
         
         # Create image with estimated height
-        total_height = 500  # Increased estimate for better spacing
+        total_height = 700  # Increased estimate for better spacing
         img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
         draw = ImageDraw.Draw(img)
         
         # Initialize starting position
         current_y = 20
         
-        # Draw title (German content)
-        wrapped_title = self._wrap_text(text['title'], title_font)
-        for line in wrapped_title:
-            bbox = title_font.getbbox(line)
-            draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
-            current_y += bbox[3] - bbox[1] + 15  # Line spacing
-        current_y += self.TITLE_SPACING
-        
-        # Draw content (English content) if present
-        if text['content']:
-            wrapped_content = self._wrap_text(text['content'], content_font)
-            for line in wrapped_content:
-                bbox = content_font.getbbox(line)
-                draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
-                current_y += bbox[3] - bbox[1] + 15  # Line spacing
-            current_y += self.CONTENT_SPACING
-        
-        # Draw username and date on the same line
+        # Draw username and date on the same line (at the top)
         username = f"@{text['username']}"
         date_text = text['date']
         
@@ -265,10 +248,27 @@ class M08FPrinter:
         date_x = self.MAX_WIDTH - date_width - self.MARGIN
         draw.text((date_x, current_y), date_text, font=hashtag_font, fill=0)
         
-        current_y += max(username_bbox[3] - username_bbox[1], date_bbox[3] - date_bbox[1]) + 25  # Increased spacing
+        current_y += max(username_bbox[3] - username_bbox[1], date_bbox[3] - date_bbox[1]) + 50  # Doubled spacing
+        
+        # Draw title (German content)
+        wrapped_title = self._wrap_text(text['title'], title_font)
+        for line in wrapped_title:
+            bbox = title_font.getbbox(line)
+            draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
+            current_y += bbox[3] - bbox[1] + 15  # Line spacing
+        current_y += self.TITLE_SPACING * 2  # Doubled spacing
+        
+        # Draw content (English content) if present
+        if text['content']:
+            wrapped_content = self._wrap_text(text['content'], content_font)
+            for line in wrapped_content:
+                bbox = content_font.getbbox(line)
+                draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
+                current_y += bbox[3] - bbox[1] + 15  # Line spacing
+            current_y += self.CONTENT_SPACING * 2  # Doubled spacing
         
         # Crop image to actual height
-        return img.crop((0, 0, self.MAX_WIDTH, current_y + 25))
+        return img.crop((0, 0, self.MAX_WIDTH, current_y + 50))
         
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""
