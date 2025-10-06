@@ -13,11 +13,12 @@ authors = [
   { name = "AFD-Thermonuklear Maintainers" }
 ]
 dependencies = [
-  "python-dotenv==1.0.0",
   "PyYAML==6.0.1",
   "pyserial==3.5",
   "keyboard==0.13.5",
   "colorama==0.4.6",
+  "Pillow",
+  "pywin32",
 ]
 
 [project.urls]
@@ -27,7 +28,7 @@ homepage = "https://github.com/sha5b/AFD-Thermonuklear"
 afd-thermonuklear = "main:main"
 
 [tool.setuptools]
-py-modules = ["buffer", "main", "printer", "tweet_reader", "twitter"]
+py-modules = ["buffer", "main", "printer", "tweet_reader"]
 
 [tool.setuptools.package-dir]
 "" = "src"
