@@ -23,6 +23,13 @@ def main():
     tweet_reader = TweetReader('tweets.csv')
     printer = M08FPrinter(config)
     
+    # Reset all tweets to unprinted at program start
+    print(f"{Fore.GREEN}Resetting all tweets to unprinted status...{Fore.RESET}")
+    tweets = tweet_reader._read_tweets()
+    for t in tweets:
+        t['printed'] = False
+    tweet_reader._write_tweets(tweets)
+    
     # Configure tweet printing interval (in seconds) from config
     tweet_interval_minutes = config.get('tweet_settings', {}).get('interval_minutes', 5)
     TWEET_INTERVAL_SECONDS = tweet_interval_minutes * 60
@@ -64,7 +71,12 @@ def main():
                     
                     last_print_time = current_time
                 else:
-                    print(f"{Fore.YELLOW}No unprinted tweets found.{Fore.RESET}")
+                    print(f"{Fore.YELLOW}No unprinted tweets found. Resetting all tweets to unprinted...{Fore.RESET}")
+                    # Reset all tweets to unprinted
+                    tweets = tweet_reader._read_tweets()
+                    for t in tweets:
+                        t['printed'] = False
+                    tweet_reader._write_tweets(tweets)
                     time.sleep(5)  # Wait a bit longer when no tweets are found
             
             time.sleep(1)  # Check every second

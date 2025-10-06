@@ -118,15 +118,8 @@ class TweetReader:
         
         # Filter unprinted tweets
         unprinted = [t for t in tweets if not t['printed']]
-        if not unprinted:
-            # Reset all tweets to unprinted
-            for t in tweets:
-                t['printed'] = False
-            self._write_tweets(tweets)
-            # Now get an unprinted tweet
-            unprinted = tweets
-            
-        # Check again if we have unprinted tweets
+        
+        # If no unprinted tweets, return None (don't reset automatically)
         if not unprinted:
             return None
             
