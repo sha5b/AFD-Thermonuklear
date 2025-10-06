@@ -8,14 +8,29 @@ class TweetReader:
         self.csv_path = csv_path
         
     def _read_tweets(self) -> list:
-        """Read all tweets from CSV file."""
+        """Read all tweets from CSV file and pair German/English versions."""
         tweets = []
         with open(self.csv_path, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
-            for row in reader:
-                # Convert printed string to boolean
-                row['printed'] = row['printed'].lower() == 'true'
-                tweets.append(row)
+            rows = list(reader)
+            
+        # Pair German and English tweets
+        i = 0
+        while i < len(rows):
+            # Convert printed string to boolean
+            rows[i]['printed'] = rows[i]['printed'].lower() == 'true'
+            
+            if i + 1 < len(rows) and rows[i]['username'] == rows[i+1]['username'] and rows[i]['date'] == rows[i+1]['date']:
+                # Found a pair - German and English versions
+                rows[i]['english_content'] = rows[i+1]['content']
+                tweets.append(rows[i])
+                i += 2  # Skip the next row as it's the English version
+            else:
+                # No pair found, just add the current row
+                rows[i]['english_content'] = ''
+                tweets.append(rows[i])
+                i += 1
+                
         return tweets
         
     def _write_tweets(self, tweets: list) -> None:
@@ -53,11 +68,11 @@ class TweetReader:
         # Write back to file
         self._write_tweets(tweets)
         
-        # Format tweet for printer
+        # Format tweet for printer with both German and English content
         return {
             'username': tweet['username'],
-            'title': tweet['title'],
-            'content': tweet['content'],
-            'hashtags': tweet['tags'].split(),
+            'title': tweet['content'],
+            'content': tweet.get('english_content', ''),
+            'hashtags': [],
             'date': tweet['date']
         }
