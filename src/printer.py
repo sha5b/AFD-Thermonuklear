@@ -80,6 +80,7 @@ class M08FPrinter:
         ports = serial.tools.list_ports.comports()
         for port in ports:
             if (hasattr(port, "vid") and hasattr(port, "pid") and
+                port.vid is not None and port.pid is not None and
                 format(port.vid, "04x").upper() == cls.VENDOR_ID and
                 format(port.pid, "04x").upper() == cls.PRODUCT_ID):
                 return port.device

@@ -1,6 +1,6 @@
 username,content,date,printed
-Andreas Geithe,„Wir sollten eine SA gründen und aufräumen.“,09.06.2020,FALSE
-Andreas Geithe,‘We should form an SA and clean up.’,09.06.2020,FALSE
+Andreas Geithe,„Wir sollten eine SA gründen und aufräumen.“,09.06.2020,TRUE
+Andreas Geithe,‘We should form an SA and clean up.’,09.06.2020,TRUE
 Dieter Görnert,"""Das Pack erschießen oder zurück nach Afrika prügeln.""",19.05.2016,FALSE
 Dieter Görnert,‘Shoot the pack or beat them back to Africa.’,19.05.2016,FALSE
 Holger Arppe,"""Brennende Flüchtlingsheime sind kein Akt der Aggression.""",August 2017,FALSE
@@ -17,8 +17,8 @@ Carsten Härle,„Das 'Deutsche Reich' [ist] 1945 nicht untergegangen“ ,01.11.
 Carsten Härle,“The 'German Reich' [did] not end in 1945”,01.11.2016,FALSE
 Peter Gebhardt,„Wir werden längere Wände als 1989 in Rumänien brauchen - Freiwillige für die Pelotons dürften aber kein Problem sein ... “ ,17.04.2023,FALSE
 Peter Gebhardt,‘We will need longer walls than in Romania in 1989 - but volunteers for the pelotons should not be a problem ... ’ ,17.04.2023,FALSE
-Mirko Welsch,„Abschiebung der Antifa nach Buchenwald. Arbeit statt Linksterror.“ ,18.02.2020,FALSE
-Mirko Welsch,‘Deportation of the Antifa to Buchenwald. Labour instead of left-wing terror.’ ,18.02.2020,FALSE
+Mirko Welsch,„Abschiebung der Antifa nach Buchenwald. Arbeit statt Linksterror.“ ,18.02.2020,TRUE
+Mirko Welsch,‘Deportation of the Antifa to Buchenwald. Labour instead of left-wing terror.’ ,18.02.2020,TRUE
 Kai Borrmann,"„Daß [der Neonazi-Terrorist Breivik] ein Mörder war, beweist ja nicht, dass er politisch falsch lag.“",15.08.2023,FALSE
 Kai Borrmann,‘The fact that [the neo-Nazi terrorist Breivik] was a murderer does not prove that he was politically wrong.’,15.08.2023,FALSE
 Jens Maier,"""Viele haben die NPD deshalb gewählt, weil dies die einzige Partei war, die immer entschlossen zu Deutschland gestanden hat.“",17.01.2017,FALSE
@@ -45,12 +45,12 @@ Peter Boehringer,"„Die Merkelnutte lässt jeden rein, sie schafft das. Dumm nu
 Peter Boehringer,"‘The Merkel whore lets everyone in, she can do it. It's just stupid that it's OUR national body that is being forcibly penetrated here.’",09.01.2016,FALSE
 Enxhi Seli-Zacharias,"„Doch längst sind die Frauen in der Szene nicht mehr nur Gebärmaschinen für das Kalifat und den Dschihad, die zur schnellen Vergrößerung der sogenannten Umma verpflichtet sind.“ ",24.05.2023,FALSE
 Enxhi Seli-Zacharias,"‘But women in the scene are no longer just birthing machines for the caliphate and jihad, committed to the rapid expansion of the so-called ummah.’ ",24.05.2023,FALSE
-Nicolaus Fest,„Die EU MUSS WEG.. genau wie die BRD Betreibergesellschaft.“ ,20.05.2020,FALSE
-Nicolaus Fest,‘The EU MUST GO... just like the FRG (Federal Republic of Germany) operating company.’ ,20.05.2020,FALSE
+Nicolaus Fest,„Die EU MUSS WEG.. genau wie die BRD Betreibergesellschaft.“ ,20.05.2020,TRUE
+Nicolaus Fest,‘The EU MUST GO... just like the FRG (Federal Republic of Germany) operating company.’ ,20.05.2020,TRUE
 Gottfried Curio,"„Das geplante Dublin IV wäre allerdings das endgültige Aus für jede Integration. Es ist ein Aufbauprogramm für Clanbildung hierzulande, statt den Asylanten in sein Dorf zurück zu schicken, kommt dann das ganze Dorf nach Deutschland.""",02.10.2018,FALSE
 Gottfried Curio,"‘However, the planned Dublin IV would be the final end for all integration. It is a programme for clan formation in this country; instead of sending the asylum seeker back to their village, the whole village will come to live in Germany.’",02.10.2018,FALSE
-Julian Flak,"""Liebe Freunde, es ist völlig egal, ob man das ganz jetzt Abschiebeoffensive, Negativeinwanderung oder schlecht Re-migration. [...] Wichtig ist nur, wer in Deutschland nichts zu suchen hat, der soll Deutschland verlassen.""",04.08.2023,TRUE
-Julian Flak,"‘Dear friends, it doesn't matter whether you call it a deportation offensive, negative immigration or bad re-migration. [...] The only important thing is that anyone who has no business in Germany should leave Germany.’",04.08.2023,TRUE
+Julian Flak,"""Liebe Freunde, es ist völlig egal, ob man das ganz jetzt Abschiebeoffensive, Negativeinwanderung oder schlecht Re-migration. [...] Wichtig ist nur, wer in Deutschland nichts zu suchen hat, der soll Deutschland verlassen.""",04.08.2023,FALSE
+Julian Flak,"‘Dear friends, it doesn't matter whether you call it a deportation offensive, negative immigration or bad re-migration. [...] The only important thing is that anyone who has no business in Germany should leave Germany.’",04.08.2023,FALSE
 Lars Steinke,"„Gerade in Böhmen und durch Prag gefahren! [...] Eine tolle, deutsche Stadt.“ ",10.06.2016,FALSE
 Lars Steinke,‘Just been to Bohemia and travelled through Prague! [...] A great German city.’ ,10.06.2016,FALSE
 Sibylle Schmidt, „Wir werden euch kriegen ihr Säcke.“ ,23.04.2019,FALSE
@@ -69,8 +69,8 @@ Stefan Räpple,"„Wir müssen uns gewaltsam Zutritt zum Kanzleramt verschaffen,
 Stefan Räpple,"“We have to force our way into the Chancellery, we have to clear the government offices.”",26.09.20,FALSE
 Björn Höcke,„1000 Jahre Deutschland! Ich gebe euch nicht her.“,07.10.15,FALSE
 Björn Höcke,“1000 years of Germany! I will not give you up.”,07.10.15,FALSE
-Björn Höcke,"„Diese EU muss sterben, damit das wahre Europa leben kann.“",29.07.23,FALSE
-Björn Höcke,“This EU must die so that the real Europe can live.”,29.07.23,FALSE
+Björn Höcke,"„Diese EU muss sterben, damit das wahre Europa leben kann.“",29.07.23,TRUE
+Björn Höcke,“This EU must die so that the real Europe can live.”,29.07.23,TRUE
 Björn Höcke,„Wir müssen die De-Islamisierung Deutschlands und Europas vorbereiten.“,20.01.18,FALSE
 Björn Höcke,“We must prepare for the de-Islamization of Germany and Europe.”,20.01.18,FALSE
 Heiner Merz,"„Frauenquoten nützen übrigens nur unqualifizierten, dummen, faulen, hässlichen und widerwärtigen Frauen.“",03.12.18,FALSE
@@ -105,8 +105,8 @@ Nikolaus Kramer,„Wir sollten eine SA gründen und aufräumen.“,Mai 20,FALSE
 Nikolaus Kramer,“We should form an SA and clean up.”,Mai 20,FALSE
 Andreas Geithe,„Dieser Islam gehört aus der Grundrechtsgarantie ausgenommen. Der Islam fällt nicht unter den Schutz des Grundgesetzes. Der Islam muss von Artikel 4 GG ausgeschlossen werden.“,09.05.18,FALSE
 Andreas Geithe,“This Islam should be excluded from the guarantee of fundamental rights. Islam does not fall under the protection of the Basic Law. Islam must be excluded from Article 4 of the Basic Law.”,09.05.18,FALSE
-Georg Hock,"„Die Völkerwanderung muss aufgehalten werden. Die sich Deutsche nennen und dies fördern, gehören an die Wand gestellt. Macht endlich was und wartet nicht auf andere. Wir haben nur eine Heimat und die ist nun mal Deutschland.“",24.03.17,FALSE
-Georg Hock,“The migration of peoples must be stopped. Those who call themselves Germans and promote this should be put up against the wall. Finally do something and don't wait for others. We only have one homeland and that is Germany.”,24.03.17,FALSE
+Georg Hock,"„Die Völkerwanderung muss aufgehalten werden. Die sich Deutsche nennen und dies fördern, gehören an die Wand gestellt. Macht endlich was und wartet nicht auf andere. Wir haben nur eine Heimat und die ist nun mal Deutschland.“",24.03.17,TRUE
+Georg Hock,“The migration of peoples must be stopped. Those who call themselves Germans and promote this should be put up against the wall. Finally do something and don't wait for others. We only have one homeland and that is Germany.”,24.03.17,TRUE
 René Augustin,„Gegen das Konzept der Menschenrechte muss man immer sein.“,05.10.15,FALSE
 René Augustin,“You always have to be against the concept of human rights.”,05.10.15,FALSE
 Christian von Hoffmeister,"„Wer sich allzu sehr feminisiert, ob Mann oder Land, sollte sich nicht wundern, wenn er schließlich auch gefickt wird.“",14.04.23,FALSE
@@ -127,8 +127,8 @@ Björn Höcke,„Bezahlbare Wohnungen zuerst für Deutsche!“,07.11.2023,FALSE
 Björn Höcke,“Affordable housing for Germans first!”,07.11.2023,FALSE
 Dubravko Mandic,"„Jetzt, liebe Freunde ist der Ernstfall offenkundig. Jetzt sind wir in das Stadium des Vorbürgerkrieges eingetreten.“ ",26.06.2018,FALSE
 Dubravko Mandic,"‘Now, dear friends, the emergency is evident. We have now entered the stage of pre-civil war.’ ",26.06.2018,FALSE
-Gottfried Curio,"„Mit Merkel zusammen müssen auch etwa 870.000 Kollaborateure aus den Ministerien, Fernsehstudios, Redaktionsstuben, Lehrkörpern, Sozialämtern und Gewerkschaften entsorgt werden. Endlich wird in Deutschland aufgeräumt!”",21.01.2019,FALSE
-Gottfried Curio,"“Together with Merkel, around 870,000 collaborators from ministries, television studios, editorial offices, teaching staff, social welfare offices and trade unions must also be disposed of. Germany is finally being cleaned up!”",21.01.2019,FALSE
+Gottfried Curio,"„Mit Merkel zusammen müssen auch etwa 870.000 Kollaborateure aus den Ministerien, Fernsehstudios, Redaktionsstuben, Lehrkörpern, Sozialämtern und Gewerkschaften entsorgt werden. Endlich wird in Deutschland aufgeräumt!”",21.01.2019,TRUE
+Gottfried Curio,"“Together with Merkel, around 870,000 collaborators from ministries, television studios, editorial offices, teaching staff, social welfare offices and trade unions must also be disposed of. Germany is finally being cleaned up!”",21.01.2019,TRUE
 Günter Lenhardt,„Ein Geburten-Dschihad ist im Gang. Ich fordere die Wiederherstellung des Staatsbürgerschaftsrechts nach Abstammung.“,18.02.2016,FALSE
 Günter Lenhardt, “A birth jihad is underway. I call for the restoration of citizenship by descent.” ,18.02.2016,FALSE
 Holger Arppe,"„Dem Flüchtling ist es doch egal, an welcher Grenze, an der griechischen oder an der deutschen, er stirbt.“",2010,FALSE
@@ -137,8 +137,8 @@ Irmhild Boßdorf,„Man könnte die Reste des Empires aber sehr gut als europäi
 Irmhild Boßdorf,"“But the remains of the empire could very well be used as a European central reservation for all Muslims living in the EU. As a quarantine island, so to speak, like the epidemic colonies of the past.” ",01.08.2013,FALSE
 Markus Frohnmaier,"„Was wir brauchen, das sind Pushbacks – egal, was der Europäische Gerichtshof dazu sagt.“",28.08.2018,FALSE
 Markus Frohnmaier,“What we need are pushbacks - regardless of what the European Court of Justice says.” ,28.08.2018,FALSE
-Markus Frohnmaier,"„Wenn der Staat die Bürger nicht mehr schützen kann, gehen die Menschen auf die Straße und schützen sich selber. Ganz einfach! Heute ist es Bürgerpflicht, die todbringende 'Messermigration’ zu stoppen! Es hätte Deinen Vater, Sohn oder Bruder treffen können!“",18.07.2017,FALSE
-Markus Frohnmaier,"“When the state can no longer protect its citizens, people take to the streets and protect themselves. Quite simply! Today it is a citizen's duty to stop the deadly 'knife migration'! It could have been your father, son or brother!” ",18.07.2017,FALSE
+Markus Frohnmaier,"„Wenn der Staat die Bürger nicht mehr schützen kann, gehen die Menschen auf die Straße und schützen sich selber. Ganz einfach! Heute ist es Bürgerpflicht, die todbringende 'Messermigration’ zu stoppen! Es hätte Deinen Vater, Sohn oder Bruder treffen können!“",18.07.2017,TRUE
+Markus Frohnmaier,"“When the state can no longer protect its citizens, people take to the streets and protect themselves. Quite simply! Today it is a citizen's duty to stop the deadly 'knife migration'! It could have been your father, son or brother!” ",18.07.2017,TRUE
 Ralf Özkara,"„Wir haben daneben generell ein Problem mit sich zusammenrottenden Mobs aus jungen männlichen Asylbewerbern, die Straftaten begehen. Das wissen wir eigentlich seit den massenhaften sexuellen Übergriffen auf der Kölner Domplatte [...] Ich fordere deshalb eine generelle Ausgangssperre für männliche Asylbewerber im Alter unter 50 Jahren ab 20.00 Uhr.“",29.12.2017,FALSE
 Ralf Özkara,“We also have a general problem with mobs of young male asylum seekers gathering together and committing crimes. We have actually known this since the mass sexual assaults on Cologne's Domplatte [...] I am therefore calling for a general curfew for male asylum seekers under the age of 50 from 8 p.m.”,29.12.2017,FALSE
 Andreas Galau,"„Es wird allerhöchste Zeit! Allerhöchste Zeit für sofortige Remigration, das heisst für Massenabschiebungen!“",17.11.2023,FALSE
@@ -169,20 +169,20 @@ Christian Lüth,"„Wir können die [Migranten] nachher immer noch alle erschie�
 Christian Lüth,"“We can still shoot them [migrants] all afterwards. That's not an issue at all. Or gas them, or whatever you want.”",23.02.2020,FALSE
 Marcel Grauf,"„Ich wünsche mir so sehr einen Bürgerkrieg und Millionen Tote, Frauen, Kinder. Mir egal, Hauptsache es geht los. [...] Tote, Verkrüppelte, es wäre so schön. Ich will auf Leichen pissen und auf Gräbern tanzen.“ ",09.05.2018,FALSE
 Marcel Grauf,"“I wish so much for a civil war and millions of dead women and children. I don't care, the main thing is that it starts. [...] Dead, crippled, it would be so nice. I want to piss on corpses and dance on graves.” ",09.05.2018,FALSE
-Stefan Räpple,„Schluß mit dem DEUTSCHEN Schuldkult!“ ,26.01.2020,FALSE
-Stefan Räpple,‘Put an end to the GERMAN cult of guilt!’ ,26.01.2020,FALSE
+Stefan Räpple,„Schluß mit dem DEUTSCHEN Schuldkult!“ ,26.01.2020,TRUE
+Stefan Räpple,‘Put an end to the GERMAN cult of guilt!’ ,26.01.2020,TRUE
 Kai Borrmann,"„...das mit den Juden ist mir völlig egal, ich fand einfach die Zeit dufte.“",13.05.2024,FALSE
 Kai Borrmann,"“...I couldn't care less about the Jews, I just thought it was a great time.” ",13.05.2024,FALSE
 Florian Rust,„Ich wünsche euch jedenfalls ein nächtliches Sieg heil!“,25.03.2023,FALSE
 Florian Rust,"“In any case, I wish you all a good night's Sieg heil!”",25.03.2023,FALSE
-Maximilian Krah,"„Ich werde nie sagen, dass jeder, der eine SS-Uniform trug, automatisch ein Verbrecher war.“",22.05.2024,FALSE
-Maximilian Krah,“I will never say that anyone who wore an SS uniform was automatically a criminal.”,22.05.2024,FALSE
+Maximilian Krah,"„Ich werde nie sagen, dass jeder, der eine SS-Uniform trug, automatisch ein Verbrecher war.“",22.05.2024,TRUE
+Maximilian Krah,“I will never say that anyone who wore an SS uniform was automatically a criminal.”,22.05.2024,TRUE
 Gunnar Witzmann,"„Wir müssen uns gewaltsam Zutritt zum Kanzleramt verschaffen, wir müssen die Regierungsstuben räumen.“ ",26.09.2020,FALSE
 Gunnar Witzmann,"‘We must force our way into the Chancellery, we must clear the halls of government.’ ",26.09.2020,FALSE
 Marcel Grauf,„Sie [die Muslime] haben uns den Krieg erklärt. Wir werden sie töten müssen.”,09.05.2018,FALSE
 Marcel Grauf,“They [the Muslims] have declared war on us. We will have to kill them.” ,09.05.2018,FALSE
-Bernd Pacha,„Ich will erstmal was in der Heimat und mich dort mit der Ausländerplage beschäftigen.“,22.11.2018,FALSE
-Bernd Pacha,“I want to do something back home first and deal with the plague of foreigners there.”,22.11.2018,FALSE
+Bernd Pacha,„Ich will erstmal was in der Heimat und mich dort mit der Ausländerplage beschäftigen.“,22.11.2018,TRUE
+Bernd Pacha,“I want to do something back home first and deal with the plague of foreigners there.”,22.11.2018,TRUE
 Marc Jongen,"„Es gibt nur zwei deutsche Großstädte, Berlin und Wien.“",05.04.2019,FALSE
 Marc Jongen," ‘There are only two major German cities, Berlin and Vienna.’ ",05.04.2019,FALSE
 Alexander Gauland,"„Aber im Zentrum unserer Gedächtnispolitik müssen die hellen, die lichtvollen Seiten der deutschen Geschichte stehen...""",23.04.2019,FALSE
