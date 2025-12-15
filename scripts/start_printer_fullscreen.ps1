@@ -11,11 +11,13 @@ param(
     [switch]$NoFullscreen
 )
 
-$repoRoot = Split-Path -Parent $PSScriptRoot
-$mainPath = Join-Path $repoRoot 'src\main.py'
+$scriptPath = if ($PSCommandPath) { $PSCommandPath } else { $MyInvocation.MyCommand.Path }
+$scriptDir = Split-Path -Parent $scriptPath
+$repoRoot = Split-Path -Parent $scriptDir
+$mainPath = Join-Path -Path $repoRoot -ChildPath 'src\main.py'
 
 if (-not (Test-Path -LiteralPath $mainPath)) {
-    Write-Error "Cannot find main.py at: $mainPath"
+    Write-Error "Cannot find main.py at: $mainPath. repoRoot='$repoRoot' scriptPath='$scriptPath'"
     exit 1
 }
 
@@ -27,7 +29,7 @@ if (-not $NoFullscreen) {
             'pwsh',
             '-NoExit',
             '-File',
-            "`"$PSCommandPath`"",
+            "`"$scriptPath`"",
             '-NoFullscreen'
         )
         Start-Process -FilePath $wt.Source -ArgumentList $args -WorkingDirectory $repoRoot
