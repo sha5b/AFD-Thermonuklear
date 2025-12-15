@@ -1,3 +1,12 @@
+"""Context:
+CSV tweet storage and selection utilities.
+
+Responsibilities:
+- Read tweets from `tweets.csv`.
+- Pair German/English rows where applicable.
+- Mark tweets as printed and persist the updated CSV.
+"""
+
 import csv
 import random
 from typing import Dict, Optional
@@ -11,7 +20,7 @@ class TweetReader:
     def _read_tweets(self) -> list:
         """Read all tweets from CSV file and pair German/English versions."""
         tweets = []
-        with open(self.csv_path, 'r', encoding='utf-8') as f:
+        with open(self.csv_path, 'r', encoding='utf-8', errors='replace') as f:
             reader = csv.DictReader(f)
             self._last_read_rows = list(reader)
             

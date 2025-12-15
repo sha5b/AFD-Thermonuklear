@@ -12,3 +12,5 @@ printer:
   buffer_size: 20  # Reduced buffer size
   print_speed: 5  # Print speed (1=slow, 5=fast)
   feed_lines: 5  # Number of lines to feed after printing
+  raster_threshold: 128
+  invert_raster: false

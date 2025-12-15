@@ -1,9 +1,21 @@
+"""Context:
+Thermal printer interface for the Phomemo M08F.
+
+Responsibilities:
+- Connect to the printer over a Windows serial/USB COM port.
+- Render tweet content into a 1-bit raster image.
+- Send raster data using ESC/POS-compatible commands.
+
+Notes:
+- The printer raster protocol is sensitive to timing and framing; data is written in buffered blocks.
+"""
+
 import win32file
 import win32con
 import serial.tools.list_ports
 from typing import Dict, Optional
 import time
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 import io
 import textwrap
 
@@ -69,6 +81,9 @@ class M08FPrinter:
         win32file.SetCommTimeouts(self.handle, timeouts)
         
         self.config = config
+        printer_config = self.config.get('printer', {})
+        self._raster_threshold = int(printer_config.get('raster_threshold', 128))
+        self._invert_raster = bool(printer_config.get('invert_raster', False))
         print(f"Connected to printer")
         
         # Initialize printer
@@ -109,6 +124,10 @@ class M08FPrinter:
         """Write raw bytes to printer."""
         win32file.WriteFile(self.handle, data)
         time.sleep(0.02)  # Short delay for stability
+
+    def _write_no_delay(self, data: bytes) -> None:
+        """Write raw bytes to printer without any artificial delay."""
+        win32file.WriteFile(self.handle, data)
         
     def _wrap_text(self, text: str, font: ImageFont.FreeTypeFont) -> list:
         """Wrap text to fit printer width."""
@@ -273,32 +292,35 @@ class M08FPrinter:
         
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""
-        # Convert to monochrome
-        img = img.convert('1')  # Convert to 1-bit
+        img = img.convert('L')
+        if self._invert_raster:
+            img = ImageOps.invert(img)
+        img = img.point(lambda p: 0 if p < self._raster_threshold else 255, mode='1')
         
         # Process image in blocks of 255 lines maximum
         for start_y in range(0, img.height, 255):
             # Calculate lines for this block
             lines_in_block = min(255, img.height - start_y)
             
-            # Send block marker
-            self._write(b'\x1D\x76\x30\x00')  # GS v 0 : print raster bit image
-            self._write(bytes([self.BYTES_PER_LINE, 0]))  # bytes per line
-            self._write(bytes([lines_in_block, 0]))  # lines in this block
-            
-            # Send image data
+            block = bytearray()
+            block += b'\x1D\x76\x30\x00'  # GS v 0 : print raster bit image
+            block += bytes([self.BYTES_PER_LINE, 0])  # bytes per line (little-endian)
+            block += bytes([lines_in_block, 0])  # lines in this block (little-endian)
+
             for y in range(start_y, start_y + lines_in_block):
-                line_data = bytearray()
                 for x in range(0, self.MAX_WIDTH, 8):
                     byte = 0
                     for bit in range(8):
-                        if x + bit < self.MAX_WIDTH:
-                            if img.getpixel((x + bit, y)) == 0:  # Black pixel
-                                byte |= (1 << (7 - bit))
-                    line_data.append(byte)
-                self._write(bytes(line_data))
-            
-            time.sleep(0.02)  # Short delay between blocks
+                        if x + bit < self.MAX_WIDTH and img.getpixel((x + bit, y)) == 0:
+                            byte |= (1 << (7 - bit))
+                    block.append(byte)
+
+            image_data = block[8:]
+            if not any(image_data):
+                self._write(bytes([0x1B, 0x4A, lines_in_block]))  # ESC J n - feed n dots
+            else:
+                self._write_no_delay(bytes(block))
+                time.sleep(0.02)
         
         # Feed paper
         feed_lines = self.config.get('printer', {}).get('feed_lines', 3)

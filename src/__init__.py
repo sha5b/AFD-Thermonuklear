@@ -1,1 +1,3 @@
-# Twitter Printer Package
+"""Context:
+Package marker for the tweet-to-thermal-printer application.
+"""

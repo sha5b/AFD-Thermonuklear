@@ -1,3 +1,11 @@
+"""Context:
+In-memory tweet buffer with simple persistence.
+
+Responsibilities:
+- Hold a bounded queue of tweets to print.
+- Persist buffer state to disk so restarts can resume.
+"""
+
 from collections import deque
 from typing import Optional, Dict, List
 import json

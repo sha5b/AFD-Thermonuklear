@@ -1,15 +1,27 @@
+"""Context:
+Main entry point for the tweet-to-thermal-printer loop.
+
+Dependencies:
+- Reads configuration from repo-root `config.yaml`.
+- Reads tweet data from repo-root `tweets.csv`.
+- Uses `M08FPrinter` for printer I/O.
+"""
+
 import yaml
 import keyboard
 import time
 from colorama import init, Fore
 from typing import Dict
+from pathlib import Path
 
 from printer import M08FPrinter
 from tweet_reader import TweetReader
 
 def load_config() -> Dict:
     """Load configuration from YAML file."""
-    with open('config.yaml', 'r') as f:
+    repo_root = Path(__file__).resolve().parents[1]
+    config_path = repo_root / 'config.yaml'
+    with open(config_path, 'r', encoding='utf-8', errors='replace') as f:
         return yaml.safe_load(f)
 
 def main():
@@ -20,7 +32,8 @@ def main():
     config = load_config()
     
     # Initialize components
-    tweet_reader = TweetReader('tweets.csv')
+    repo_root = Path(__file__).resolve().parents[1]
+    tweet_reader = TweetReader(str(repo_root / 'tweets.csv'))
     printer = M08FPrinter(config)
     
     # Reset all tweets to unprinted at program start
