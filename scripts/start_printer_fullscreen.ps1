@@ -13,20 +13,38 @@ param(
 
 $scriptPath = if ($PSCommandPath) { $PSCommandPath } else { $MyInvocation.MyCommand.Path }
 $scriptDir = Split-Path -Parent $scriptPath
-$repoRoot = Split-Path -Parent $scriptDir
-$mainPath = Join-Path -Path $repoRoot -ChildPath 'src\main.py'
 
-if (-not (Test-Path -LiteralPath $mainPath)) {
-    Write-Error "Cannot find main.py at: $mainPath. repoRoot='$repoRoot' scriptPath='$scriptPath'"
+$repoRootCandidates = @(
+    (Split-Path -Parent $scriptDir),
+    (Join-Path $env:USERPROFILE 'Documents\GitHub\AFD-Thermonuklear'),
+    (Join-Path $env:USERPROFILE 'OneDrive\Documents\GitHub\AFD-Thermonuklear'),
+    (Join-Path $env:USERPROFILE 'Documents\AFD-Thermonuklear'),
+    (Join-Path $env:USERPROFILE 'OneDrive\Documents\AFD-Thermonuklear')
+) | Where-Object { $_ -and (Test-Path -LiteralPath $_) }
+
+$repoRoot = $null
+foreach ($candidate in $repoRootCandidates) {
+    $candidateMain = Join-Path -Path $candidate -ChildPath 'src\main.py'
+    if (Test-Path -LiteralPath $candidateMain) {
+        $repoRoot = $candidate
+        break
+    }
+}
+
+$mainPath = if ($repoRoot) { Join-Path -Path $repoRoot -ChildPath 'src\main.py' } else { $null }
+
+if (-not $mainPath -or -not (Test-Path -LiteralPath $mainPath)) {
+    Write-Error "Cannot find main.py. repoRoot='$repoRoot' scriptPath='$scriptPath'"
     exit 1
 }
 
 if (-not $NoFullscreen) {
     $wt = Get-Command wt -ErrorAction SilentlyContinue
     if ($null -ne $wt) {
+        $shell = if (Get-Command pwsh -ErrorAction SilentlyContinue) { 'pwsh' } else { 'powershell' }
         $args = @(
             '-F',
-            'pwsh',
+            $shell,
             '-NoExit',
             '-File',
             "`"$scriptPath`"",
