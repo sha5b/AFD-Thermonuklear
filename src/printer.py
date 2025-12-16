@@ -135,12 +135,22 @@ class M08FPrinter:
         if lines <= 0:
             return
 
+        printer_config = self.config.get('printer', {})
+        feed_line_delay_ms = int(printer_config.get('feed_line_delay_ms', 20))
+        feed_line_delay_s = max(0, feed_line_delay_ms) / 1000.0
+
         remaining = lines
         while remaining > 0:
             chunk = min(255, remaining)
             self._write_no_delay(b'\x0A' * chunk)
-            time.sleep(0.02)
+            time.sleep(feed_line_delay_s)
             remaining -= chunk
+
+    def _cooldown_before_feed(self) -> None:
+        printer_config = self.config.get('printer', {})
+        post_print_delay_ms = int(printer_config.get('post_print_delay_ms', 0))
+        if post_print_delay_ms > 0:
+            time.sleep(post_print_delay_ms / 1000.0)
         
     def _wrap_text(self, text: str, font: ImageFont.FreeTypeFont) -> list:
         """Wrap text to fit printer width."""
@@ -281,7 +291,7 @@ class M08FPrinter:
         date_x = self.MAX_WIDTH - date_width - self.MARGIN
         draw.text((date_x, current_y), date_text, font=hashtag_font, fill=0)
         
-        current_y += max(username_bbox[3] - username_bbox[1], date_bbox[3] - date_bbox[1]) + 50  # Doubled spacing
+        current_y += max(username_bbox[3] - username_bbox[1], date_bbox[3] - date_bbox[1]) + 10  # Doubled spacing
         
         # Draw title (German content)
         wrapped_title = self._wrap_text(text['title'], title_font)
@@ -289,7 +299,8 @@ class M08FPrinter:
             bbox = title_font.getbbox(line)
             draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
             current_y += bbox[3] - bbox[1] + 15  # Line spacing
-        current_y += self.TITLE_SPACING * 2  # Doubled spacing
+        if text['content']:
+            current_y += self.TITLE_SPACING
         
         # Draw content (English content) if present
         if text['content']:
@@ -298,7 +309,7 @@ class M08FPrinter:
                 bbox = content_font.getbbox(line)
                 draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
                 current_y += bbox[3] - bbox[1] + 15  # Line spacing
-            current_y += self.CONTENT_SPACING * 2  # Doubled spacing
+            
         
         # Crop image to actual height
         return img.crop((0, 0, self.MAX_WIDTH, max(1, current_y)))
@@ -331,10 +342,6 @@ class M08FPrinter:
             self._write_no_delay(bytes(block))
             time.sleep(0.02)
         
-        # Feed paper
-        feed_lines = self.config.get('printer', {}).get('feed_lines', 3)
-        self._feed_lines(feed_lines)
-        
     def print_text(self, text: Dict) -> bool:
         """Print text to the printer."""
         try:
@@ -352,6 +359,12 @@ class M08FPrinter:
             
             # Print image
             self._print_image(img)
+
+            self._cooldown_before_feed()
+
+            feed_lines = int(self.config.get('printer', {}).get('feed_lines', 0))
+            if feed_lines > 0:
+                self._feed_lines(feed_lines)
 
             feed_gap_lines = self.config.get('printer', {}).get('tweet_gap_lines', None)
             if feed_gap_lines is None:
@@ -376,6 +389,12 @@ class M08FPrinter:
             # Print centered with larger font
             img = self._simple_text_to_image(message, align=1, size=48)  # Center align with large font
             self._print_image(img)
+
+            self._cooldown_before_feed()
+
+            feed_lines = int(self.config.get('printer', {}).get('feed_lines', 0))
+            if feed_lines > 0:
+                self._feed_lines(feed_lines)
             
             return True
         except Exception as e:

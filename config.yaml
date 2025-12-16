@@ -13,6 +13,8 @@ printer:
   print_speed: 5  # Print speed (1=slow, 5=fast)
   feed_lines: 1  # Number of lines to feed after printing
   print_density: 5
+  post_print_delay_ms: 250
+  feed_line_delay_ms: 40
   raster_threshold: 128
   invert_raster: false
   tweet_gap_lines: 6
