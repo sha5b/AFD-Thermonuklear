@@ -130,6 +130,21 @@ class M08FPrinter:
         """Write raw bytes to printer without any artificial delay."""
         win32file.WriteFile(self.handle, data)
 
+    def _write_chunked(self, data: bytes) -> None:
+        printer_config = self.config.get('printer', {})
+        chunk_size_bytes = int(printer_config.get('write_chunk_size_bytes', 4096))
+        chunk_delay_ms = int(printer_config.get('write_chunk_delay_ms', 2))
+
+        if chunk_size_bytes <= 0:
+            chunk_size_bytes = 4096
+
+        delay_s = max(0, chunk_delay_ms) / 1000.0
+
+        for start in range(0, len(data), chunk_size_bytes):
+            win32file.WriteFile(self.handle, data[start:start + chunk_size_bytes])
+            if delay_s > 0:
+                time.sleep(delay_s)
+
     def _feed_lines(self, lines: int) -> None:
         lines = int(lines)
         if lines <= 0:
@@ -264,24 +279,54 @@ class M08FPrinter:
         content_font = self._get_font(self.CONTENT_SIZE)
         hashtag_font = self._get_font(self.HASHTAG_SIZE)
         
-        # Create image with estimated height
-        total_height = 700  # Increased estimate for better spacing
-        img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
-        draw = ImageDraw.Draw(img)
-        
-        # Initialize starting position
-        current_y = 20
-        
-        # Draw username and date on the same line (at the top)
+        # Pre-compute required height (avoid fixed canvas height which can corrupt long tweets)
+        top_padding = 20
+        after_username_spacing = 10
+        title_line_spacing = 15
+        content_line_spacing = 15
+
         username = f"@{text['username']}"
         date_text = text['date']
-        
-        # Get dimensions for both texts
+
         username_bbox = username_font.getbbox(username)
         date_bbox = hashtag_font.getbbox(date_text)
+
+        username_line_height = max(
+            username_bbox[3] - username_bbox[1],
+            date_bbox[3] - date_bbox[1],
+        )
+
+        wrapped_title = self._wrap_text(text['title'], title_font)
+        title_heights = []
+        for line in wrapped_title:
+            bbox = title_font.getbbox(line)
+            title_heights.append((bbox[3] - bbox[1]) + title_line_spacing)
+
+        wrapped_content = []
+        content_heights = []
+        if text['content']:
+            wrapped_content = self._wrap_text(text['content'], content_font)
+            for line in wrapped_content:
+                bbox = content_font.getbbox(line)
+                content_heights.append((bbox[3] - bbox[1]) + content_line_spacing)
+
+        total_height = (
+            top_padding
+            + username_line_height
+            + after_username_spacing
+            + sum(title_heights)
+            + (self.TITLE_SPACING if text['content'] else 0)
+            + sum(content_heights)
+        )
+
+        total_height = max(1, int(total_height))
+
+        img = Image.new('1', (self.MAX_WIDTH, total_height), 1)  # 1 = white
+        draw = ImageDraw.Draw(img)
+
+        current_y = top_padding
         
-        # Position username on left and date on right
-        username_width = username_bbox[2] - username_bbox[0]
+        # Draw username and date on the same line (at the top)
         date_width = date_bbox[2] - date_bbox[0]
         
         # Draw username on left
@@ -291,24 +336,22 @@ class M08FPrinter:
         date_x = self.MAX_WIDTH - date_width - self.MARGIN
         draw.text((date_x, current_y), date_text, font=hashtag_font, fill=0)
         
-        current_y += max(username_bbox[3] - username_bbox[1], date_bbox[3] - date_bbox[1]) + 10  # Doubled spacing
+        current_y += username_line_height + after_username_spacing
         
         # Draw title (German content)
-        wrapped_title = self._wrap_text(text['title'], title_font)
         for line in wrapped_title:
             bbox = title_font.getbbox(line)
             draw.text((self.MARGIN, current_y), line, font=title_font, fill=0)
-            current_y += bbox[3] - bbox[1] + 15  # Line spacing
+            current_y += (bbox[3] - bbox[1]) + title_line_spacing
         if text['content']:
             current_y += self.TITLE_SPACING
         
         # Draw content (English content) if present
         if text['content']:
-            wrapped_content = self._wrap_text(text['content'], content_font)
             for line in wrapped_content:
                 bbox = content_font.getbbox(line)
                 draw.text((self.MARGIN, current_y), line, font=content_font, fill=0)
-                current_y += bbox[3] - bbox[1] + 15  # Line spacing
+                current_y += (bbox[3] - bbox[1]) + content_line_spacing
             
         
         # Crop image to actual height
@@ -339,7 +382,7 @@ class M08FPrinter:
                             byte |= (1 << (7 - bit))
                     block.append(byte)
 
-            self._write_no_delay(bytes(block))
+            self._write_chunked(bytes(block))
             time.sleep(0.02)
         
     def print_text(self, text: Dict) -> bool:
