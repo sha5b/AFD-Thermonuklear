@@ -10,7 +10,7 @@ REM IMPORTANT:
 REM - Edit REPO to your repo folder.
 REM - Then copy THIS .bat into: Win+R -> shell:startup
 
-set "REPO=C:\Users\sha5b\Documents\GitHub\AFD-Thermonuklear"
+set "REPO=C:\Users\thermo\Documents\GitHub\AFD-Thermonuklear"
 
 if not exist "%REPO%\scripts\start_printer_fullscreen.ps1" (
   echo ERROR: Cannot find "%REPO%\scripts\start_printer_fullscreen.ps1"
