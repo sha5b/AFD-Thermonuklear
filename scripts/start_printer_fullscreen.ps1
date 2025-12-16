@@ -55,17 +55,40 @@ if (-not $NoFullscreen) {
     }
 }
 
-$py = Get-Command py -ErrorAction SilentlyContinue
-if ($null -ne $py) {
-    & $py.Source -3 $mainPath
+$uv = Get-Command uv -ErrorAction SilentlyContinue
+if ($null -eq $uv) {
+    $uvCandidates = @(
+        (Join-Path $env:USERPROFILE '.cargo\bin\uv.exe'),
+        (Join-Path $env:LOCALAPPDATA 'Programs\uv\uv.exe')
+    ) | Where-Object { $_ -and (Test-Path -LiteralPath $_) }
+
+    if ($uvCandidates.Count -gt 0) {
+        $uvExe = $uvCandidates[0]
+    } else {
+        Write-Error "'uv' was not found on PATH (and not found in common install locations). Install uv and try again."
+        Write-Error "Install (PowerShell): irm https://astral.sh/uv/install.ps1 | iex"
+        exit 1
+    }
+} else {
+    $uvExe = $uv.Source
+}
+
+Push-Location $repoRoot
+try {
+    $lockPath = Join-Path -Path $repoRoot -ChildPath 'uv.lock'
+    if (Test-Path -LiteralPath $lockPath) {
+        & $uvExe sync --frozen
+    } else {
+        & $uvExe sync
+    }
+
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
+
+    & $uvExe run python $mainPath
     exit $LASTEXITCODE
 }
-
-$python = Get-Command python -ErrorAction SilentlyContinue
-if ($null -eq $python) {
-    Write-Error "Neither 'py' nor 'python' was found on PATH. Install Python or add it to PATH."
-    exit 1
+finally {
+    Pop-Location
 }
-
-& $python.Source $mainPath
-exit $LASTEXITCODE
