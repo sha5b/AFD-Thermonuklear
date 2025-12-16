@@ -296,12 +296,11 @@ class M08FPrinter:
         if self._invert_raster:
             img = ImageOps.invert(img)
         img = img.point(lambda p: 0 if p < self._raster_threshold else 255, mode='1')
-        
-        # Process image in blocks of 255 lines maximum
+
+        # Send raster data in blocks of up to 255 rows.
         for start_y in range(0, img.height, 255):
-            # Calculate lines for this block
             lines_in_block = min(255, img.height - start_y)
-            
+
             block = bytearray()
             block += b'\x1D\x76\x30\x00'  # GS v 0 : print raster bit image
             block += bytes([self.BYTES_PER_LINE, 0])  # bytes per line (little-endian)
@@ -315,12 +314,8 @@ class M08FPrinter:
                             byte |= (1 << (7 - bit))
                     block.append(byte)
 
-            image_data = block[8:]
-            if not any(image_data):
-                self._write(bytes([0x1B, 0x4A, lines_in_block]))  # ESC J n - feed n dots
-            else:
-                self._write_no_delay(bytes(block))
-                time.sleep(0.02)
+            self._write_no_delay(bytes(block))
+            time.sleep(0.02)
         
         # Feed paper
         feed_lines = self.config.get('printer', {}).get('feed_lines', 3)
@@ -338,10 +333,26 @@ class M08FPrinter:
                 print(f"Hashtags: {' '.join(text['hashtags'])}")
             print("===================\n")
             
-            # Convert tweet to image and print
+            # Convert tweet to image
             img = self._tweet_to_image(text)
-            self._print_image(img)
             
+            # Print image
+            self._print_image(img)
+
+            feed_gap_lines = self.config.get('printer', {}).get('tweet_gap_lines', None)
+            if feed_gap_lines is None:
+                feed_gap_dots = int(self.config.get('printer', {}).get('tweet_gap_dots', 0))
+                feed_gap_lines = max(0, int(round(feed_gap_dots / 64)))
+
+            feed_gap_lines = int(feed_gap_lines)
+            if feed_gap_lines > 0:
+                remaining = feed_gap_lines
+                while remaining > 0:
+                    chunk = min(255, remaining)
+                    self._write(bytes([0x1B, 0x64, chunk]))  # ESC d n - feed n lines
+                    remaining -= chunk
+            
+            print("=== Tweet Printed Successfully ===")
             return True
         except Exception as e:
             print(f"Printer error: {str(e)}")
