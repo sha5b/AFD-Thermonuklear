@@ -107,8 +107,9 @@ class M08FPrinter:
         self._write(b'\x1B\x40')  # ESC @ - Initialize printer
         time.sleep(0.1)
         
-        # Set print density to highest for better emoji detail
-        self._write(b'\x1B\x37\x07')  # ESC 7 n - Set print density (7 = highest)
+        density = int(self.config.get('printer', {}).get('print_density', 7))
+        density = max(0, min(7, density))
+        self._write(b'\x1B\x37' + bytes([density]))  # ESC 7 n - Set print density
         
         # Set line spacing
         self._write(b'\x1B\x33\x40')  # ESC 3 n - Set line spacing to 64 dots
@@ -307,7 +308,8 @@ class M08FPrinter:
         img = img.convert('L')
         if self._invert_raster:
             img = ImageOps.invert(img)
-        img = img.point(lambda p: 0 if p < self._raster_threshold else 255, mode='1')
+        img = img.point(lambda p: 0 if p < self._raster_threshold else 255)
+        img = img.convert('1', dither=Image.Dither.NONE)
 
         # Send raster data in blocks of up to 255 rows.
         for start_y in range(0, img.height, 255):

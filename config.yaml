@@ -5,13 +5,14 @@ twitter:
   fetch_count: 5  # Reduced to minimize rate limiting
   
 tweet_settings:
-  interval_minutes: 0.1  # Print one tweet every 5 minutes
+  interval_minutes: 0.5  # Print one tweet every 5 minutes
   
 printer:
   baudrate: 9600
   buffer_size: 20  # Reduced buffer size
   print_speed: 5  # Print speed (1=slow, 5=fast)
-  feed_lines: 5  # Number of lines to feed after printing
+  feed_lines: 1  # Number of lines to feed after printing
+  print_density: 5
   raster_threshold: 128
   invert_raster: false
-  tweet_gap_lines: 20
+  tweet_gap_lines: 6
