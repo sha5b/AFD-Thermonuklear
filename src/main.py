@@ -10,6 +10,7 @@ Dependencies:
 import yaml
 import keyboard
 import time
+import os
 from colorama import init, Fore
 from typing import Dict
 from pathlib import Path
@@ -17,22 +18,38 @@ from pathlib import Path
 from printer import M08FPrinter
 from tweet_reader import TweetReader
 
-def load_config() -> Dict:
+def load_config() -> tuple[Dict, Path, Path]:
     """Load configuration from YAML file."""
-    repo_root = Path(__file__).resolve().parents[1]
-    config_path = repo_root / 'config.yaml'
+    repo_root_env = os.getenv('AFD_THERMONUKLEAR_REPO')
+    config_path_env = os.getenv('AFD_THERMONUKLEAR_CONFIG')
+
+    if config_path_env:
+        config_path = Path(config_path_env).expanduser().resolve()
+        repo_root = config_path.parent
+    elif repo_root_env:
+        repo_root = Path(repo_root_env).expanduser().resolve()
+        config_path = repo_root / 'config.yaml'
+    else:
+        repo_root = Path(__file__).resolve().parents[1]
+        config_path = repo_root / 'config.yaml'
+
     with open(config_path, 'r', encoding='utf-8', errors='replace') as f:
-        return yaml.safe_load(f)
+        config = yaml.safe_load(f)
+
+    if not isinstance(config, dict):
+        config = {}
+
+    return config, config_path, repo_root
 
 def main():
     # Initialize colorama for colored output
     init()
     
     print(f"{Fore.GREEN}Loading configuration...{Fore.RESET}")
-    config = load_config()
+    config, config_path, repo_root = load_config()
+    print(f"{Fore.GREEN}Using config file: {config_path}{Fore.RESET}")
     
     # Initialize components
-    repo_root = Path(__file__).resolve().parents[1]
     tweet_reader = TweetReader(str(repo_root / 'tweets.csv'))
     printer = M08FPrinter(config)
     
@@ -44,7 +61,11 @@ def main():
     tweet_reader._write_tweets(tweets)
     
     # Configure tweet printing interval (in seconds) from config
-    tweet_interval_minutes = config.get('tweet_settings', {}).get('interval_minutes', 5)
+    tweet_interval_minutes_raw = config.get('tweet_settings', {}).get('interval_minutes', 5)
+    try:
+        tweet_interval_minutes = float(tweet_interval_minutes_raw)
+    except (TypeError, ValueError):
+        tweet_interval_minutes = 5
     TWEET_INTERVAL_SECONDS = tweet_interval_minutes * 60
     
     print(f"{Fore.GREEN}Starting Tweet Printer...{Fore.RESET}")

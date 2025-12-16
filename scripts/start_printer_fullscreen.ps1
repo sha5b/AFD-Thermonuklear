@@ -42,7 +42,7 @@ if (-not $NoFullscreen) {
     $wt = Get-Command wt -ErrorAction SilentlyContinue
     if ($null -ne $wt) {
         $shell = if (Get-Command pwsh -ErrorAction SilentlyContinue) { 'pwsh' } else { 'powershell' }
-        $args = @(
+        $wtArgs = @(
             '-F',
             $shell,
             '-NoExit',
@@ -50,7 +50,7 @@ if (-not $NoFullscreen) {
             "`"$scriptPath`"",
             '-NoFullscreen'
         )
-        Start-Process -FilePath $wt.Source -ArgumentList $args -WorkingDirectory $repoRoot
+        Start-Process -FilePath $wt.Source -ArgumentList $wtArgs -WorkingDirectory $repoRoot
         exit 0
     }
 }
@@ -75,6 +75,10 @@ if ($null -eq $uv) {
 
 Push-Location $repoRoot
 try {
+    $configPath = Join-Path -Path $repoRoot -ChildPath 'config.yaml'
+    $env:AFD_THERMONUKLEAR_REPO = $repoRoot
+    $env:AFD_THERMONUKLEAR_CONFIG = $configPath
+
     $lockPath = Join-Path -Path $repoRoot -ChildPath 'uv.lock'
     if (Test-Path -LiteralPath $lockPath) {
         & $uvExe sync --frozen
