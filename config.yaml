@@ -14,4 +14,4 @@ printer:
   feed_lines: 5  # Number of lines to feed after printing
   raster_threshold: 128
   invert_raster: false
-  tweet_gap_dots: 120
+  tweet_gap_lines: 20

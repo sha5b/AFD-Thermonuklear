@@ -128,6 +128,18 @@ class M08FPrinter:
     def _write_no_delay(self, data: bytes) -> None:
         """Write raw bytes to printer without any artificial delay."""
         win32file.WriteFile(self.handle, data)
+
+    def _feed_lines(self, lines: int) -> None:
+        lines = int(lines)
+        if lines <= 0:
+            return
+
+        remaining = lines
+        while remaining > 0:
+            chunk = min(255, remaining)
+            self._write_no_delay(b'\x0A' * chunk)
+            time.sleep(0.02)
+            remaining -= chunk
         
     def _wrap_text(self, text: str, font: ImageFont.FreeTypeFont) -> list:
         """Wrap text to fit printer width."""
@@ -288,7 +300,7 @@ class M08FPrinter:
             current_y += self.CONTENT_SPACING * 2  # Doubled spacing
         
         # Crop image to actual height
-        return img.crop((0, 0, self.MAX_WIDTH, current_y + 50))
+        return img.crop((0, 0, self.MAX_WIDTH, max(1, current_y)))
         
     def _print_image(self, img: Image.Image) -> None:
         """Print a PIL image."""
@@ -319,7 +331,7 @@ class M08FPrinter:
         
         # Feed paper
         feed_lines = self.config.get('printer', {}).get('feed_lines', 3)
-        self._write(bytes([0x1B, 0x64, feed_lines]))  # Feed n lines
+        self._feed_lines(feed_lines)
         
     def print_text(self, text: Dict) -> bool:
         """Print text to the printer."""
@@ -346,11 +358,7 @@ class M08FPrinter:
 
             feed_gap_lines = int(feed_gap_lines)
             if feed_gap_lines > 0:
-                remaining = feed_gap_lines
-                while remaining > 0:
-                    chunk = min(255, remaining)
-                    self._write(bytes([0x1B, 0x64, chunk]))  # ESC d n - feed n lines
-                    remaining -= chunk
+                self._feed_lines(feed_gap_lines)
             
             print("=== Tweet Printed Successfully ===")
             return True
