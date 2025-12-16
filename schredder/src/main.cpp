@@ -8,7 +8,7 @@ const int RELAY_2_PIN = 14;  // D14 -> Second relay
 // Timing configuration (in milliseconds)
 // For production: ON_TIME = 10 * 60 * 1000 (10 minutes)
 // For debugging: ON_TIME = 30 * 1000 (30 seconds)
-const unsigned long ON_TIME =  600 * 1000;      // 30 seconds for debugging
+const unsigned long ON_TIME =  300 * 1000;      // 30 seconds for debugging
 const unsigned long OFF_TIME = 2 * 1000;       // 2 seconds
 
 // Relay states (change if your relay module is active LOW or HIGH)
